@@ -1,0 +1,36 @@
+%D \module
+%D   [     file=t-zhfonts,
+%D      version=2009.11.20,
+%D        title=\CONTEXT\ User Module,
+%D     subtitle=zhfonts,
+%D       author=Li Yanrui,
+%D         date=\currentdate,
+%D    copyright=Li Yanrui,
+%D        email=liyanrui.m2@gmail.com,
+%D      license=Public Domain]
+
+\writestatus{loading}{ConTeXt User Module / zhfonts}
+\unprotect
+\startmodule[zhfonts]
+
+\startluacode
+dofile (kpse.find_file ("zhfonts", "lua"))
+\stopluacode
+
+\def\setupzhfonts{\dodoubleempty\dosetupzhfonts}
+\def\dosetupzhfonts[#1][#2]{%
+    \ctxlua{zhfonts.refresh_font_model ('zh', '#1', '#2')}
+}
+
+\def\setuplatinfonts{\dodoubleempty\dosetuplatinfonts}
+\def\dosetuplatinfonts[#1][#2]{%
+    \ctxlua{zhfonts.refresh_font_model ('latin', '#1', '#2')}
+}
+
+\def\usezhfonts[#1]{%
+    \ctxlua{zhfonts.use ('#1')}
+}
+
+\stopmodule
+\protect
+\endinput
