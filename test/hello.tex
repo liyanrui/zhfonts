@@ -1,0 +1,69 @@
+\environment env
+
+\useURL[author-email][lyanry@gmail.com][][lyanry@gmail.com]
+\useURL[wiki][http://wiki.contextgarden.net][][Wiki]
+\useURL[yanry][mailto:lyanry@gmail.com][][lyanry@gmail.com]
+
+\starttext
+
+\title{你好，\CONTEXT！}
+
+这是一份用于展示 \CONTEXT\ 基本排版功能的示范文档，希望你能喜欢。更多的 \CONTEXT\ 排版知识请查阅 \from[wiki]，绿色的文本是可点击的，它可以带你去那里。
+
+\subject{这是列表}
+
+下面是一份列表排版示例：
+
+\startitemize[n]
+\item 吾生有崖，而知无崖，以有崖求无崖，殆哉矣
+\item 居然真的会有人相信鲨鱼鳍和鸟口水有什么营养价值
+\item 月球上是看不到长城的，也许只能看到伟大的防火墙
+\stopitemize
+
+\subject{程序代码}
+
+若要在文档中排版一些程序代码，行内代码需要用~\type{\type{...}}~控制序列，行间代码需要用：
+
+\starttyping
+
+\starttyping
+
+我是代码 wa ha ha
+
+\stoptyping
+
+\stoptyping
+
+\subject{数学}
+
+行内的公式是像 $e^{\pi i}+1=0$ 这个样子的，行间的公式则是这样：
+
+\startformula
+\int_0^\infty t^4 e^{-t}\,dt = 24.
+\stopformula
+
+还可以带编号:
+
+\placeformula[eq:factorial-example]
+\startformula
+\int_0^\infty t^5 e^{-t}\,dt = 120.
+\stopformula
+
+可通过公式名去引用它。例如引用上述公式 {\tt factorial-example}，即公式 \in[eq:factorial-example]，\CONTEXT\ 会自动确定其编号，并且在交互模式开启的情况下，可以点击公式编号，它会将你带往那个公式的所在位置。
+
+\subject{图文并茂}
+
+现在看一下如何在文档中插入图片。
+
+\placefigure[right,none][fig:pixiu]{}{\externalfigure[img/dujiao][width=.15\textwidth]}
+
+相传貔貅是一种凶猛瑞兽，而这种猛兽分为雌性及雄性，雄性名貔，雌性名貅。但现在流传下来的都没有分为雌雄了。在古时这种瑞兽是分一角和两角的，一角的称为天禄，两角的称为辟邪。在《汉书•西域传》上有这样的记载：“乌戈山离国有桃拔、狮子、犀牛。”孟康注曰：“桃拔，一曰符拔，似鹿尾长，独角者称为天鹿，两角者称为辟邪。”辟邪便是貔貅了。山海经记载貔貅：“龙头、马身、麟脚、形如狮，会飞。”后来再没有分一角或两角，多以一角造型为主。 在南方，一般人是喜欢称这种瑞兽为貔貅，而在北方则依然称为辟邪。貔貅是以财为食的，纳食四方之财。中国传统是有貔貅的习俗，和龙狮一样，有将这地方的邪气赶走、带来欢乐及好运的作用。
+
+\placefigure[force][fig:pixiu]{貔貅的传统造型}{\externalfigure[img/pixiu][width=.3\textwidth]}
+
+\vfill
+
+\noindent 
+\framed[corner=round, width=\textwidth,height=1in,backgroundcolor=gray,background=color]{这份文档采用 Public Domain 许可协议发布，因此你可以改进它，与他人分享，或者做任何你想做的事情。提意见是受欢迎的，你可以将意见发到 \from[yanry] (Li Yanrui)。}
+
+\stoptext
