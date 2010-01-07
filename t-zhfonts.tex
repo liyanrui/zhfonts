@@ -33,12 +33,15 @@ dofile (kpse.find_file ("zhfonts", "lua"))
     \ctxlua{zhfonts.use ('#1')}
 }
 
-\doifsomething{\currentmoduleparameter{size}}{%
-        \doifsomethingelse{\currentmoduleparameter{style}}
-                {\usezhfonts[\currentmoduleparameter{style},\currentmoduleparameter{size}]}
-                {\usezhfonts[rm,\currentmoduleparameter{size}]}%
-}
+\doifsomethingelse{%
+    \currentmoduleparameter{style}}{%
+        \doifsomethingelse{\currentmoduleparameter{size}}
+            {\usezhfonts[\currentmoduleparameter{style},\currentmoduleparameter{size}]}%
+            {\usezhfonts[\currentmoduleparameter{style},11pt]}%
+    }
+    {\usezhfonts[rm,11pt]}
 
 \stopmodule
 \protect
 \endinput
+
