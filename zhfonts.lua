@@ -33,9 +33,9 @@ local function strtrim (str)
 end
 
 local function gen_default_font_model ()
-    local zh_default_font = {[family_index[1]] = 'adobesongstd', 
-			     [family_index[2]] = 'adobeheitistd', 
-			     [family_index[3]] = 'adobefangsongstd'}
+    local zh_default_font = {[family_index[1]] = 'nsimsun', 
+			     [family_index[2]] = 'youyuan', 
+			     [family_index[3]] = 'fangsong'}
     for v1 in values (family_index) do
 	zh_font_model[v1] = {}
 	for v2 in values (type_index) do
@@ -43,9 +43,9 @@ local function gen_default_font_model ()
 	end
     end
 
-    local latin_default_font = {[family_index[1]] = 'lmroman10', 
-				[family_index[2]] = 'lmsans10', 
-				[family_index[3]] = 'lmmono10'}
+    local latin_default_font = {[family_index[1]] = 'texgyrepagella', 
+				[family_index[2]] = 'texgyreheros', 
+				[family_index[3]] = 'texgyrecursor'}
     for v1 in values (family_index) do
 	latin_font_model[v1] = {}
 	for v2 in values (type_index) do
@@ -110,13 +110,21 @@ function zhfonts.refresh_font_model (language, family, types)
     end
 end
 
+
+local zhfonts_use_count = 1
+
 function zhfonts.use (param)
     if not verify_font_model () then gen_default_font_model () end
     zhfonts.gen_text_typescript ()
     context ('\\setscript[hanzi]')
 
     dofile (kpse.find_file ('zhcnpuncs', 'lua'))
-    zhcnpuncs.opt ()
+
+    if zhfonts_use_count == 1 then
+	zhcnpuncs.opt ()
+    end
 
     context ('\\setupbodyfont[zhfonts, ' .. param .. ']')
+    
+    zhfonts_use_count = zhfonts_use_count + 1
 end

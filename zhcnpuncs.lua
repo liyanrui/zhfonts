@@ -176,42 +176,6 @@ local function stretch_glues (head, orphan_width, restrict)
     end
 end
 
-local function process_orphan (head, orphan_factor, stretch_factor)
-    local natural_width = node_dimensions (head)
-    local hsize = tex.hsize
-    local possible_stretch_size = 0
-    local glue_num = node_count (glue_flag, head)
-    for n in node_traverse_id (glue_flag, head) do
-	if (n.subtype == 0) then
-	    possible_stretch_size = possible_stretch_size + n.spec.stretch
-	end
-    end
-    local l = 1 + orphan_factor + natural_width / hsize
-    local possible_width = natural_width + l * possible_stretch_size / glue_num
-    local orphan_size = possible_width % hsize
-    local r = orphan_size / hsize
-    if r <= orphan_factor and l > 1 then
-	local shrink = 0
-	local desc = nil
-	local r = 0
-	local s = 0
-	for n in node_traverse_id (glyph_flag, head) do
-	    desc = fontdata[n.font].descriptions[n.char]
-	    r = quad_multiple (n.font, l)
-	    if desc then
-		s = s + r * (desc.width - (desc.boundingbox[3] 
-					   - desc.boundingbox[1])) / desc.width
-	    end
-	end
-	local scale_l = stretch_factor * l
-	if s < scale_l * orphan_size and s > 0 then
-	    stretch_glues (head, orphan_size, scale_l)
-	else
-	    shrink_glues (head)
-	end
-    end
-end
-
 local function compress_punc (head)
     for n in node_traverse_id (glyph_flag, head) do
 	local n_flag = is_zhcnpunc_node_group (n)
@@ -288,7 +252,6 @@ local function my_pre_linebreak_filter (head, groupcode)
     end
     if groupcode ~= '' then return true end
     compress_punc (head)
-    process_orphan (head, 0.15, 6)
     return true
 end
 
@@ -298,7 +261,7 @@ local function my_post_linebreak_filter (head, groupcode)
     end
     if groupcode ~= '' then return true end
     margin_align (head)
-    orphan_line_last_check (head, 0.1247)
+    orphan_line_last_check (head, 0.15)
     return true
 end
 
