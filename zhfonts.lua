@@ -43,15 +43,29 @@ local function gen_default_font_model ()
 	end
     end
 
-    local latin_default_font = {[family_index[1]] = 'texgyrepagella', 
-				[family_index[2]] = 'texgyreheros', 
-				[family_index[3]] = 'texgyrecursor'}
-    for v1 in values (family_index) do
-	latin_font_model[v1] = {}
-	for v2 in values (type_index) do
-	    latin_font_model[v1][v2] = latin_default_font[v1] .. v2
-	end
-    end
+
+--    local latin_default_font = {[family_index[1]] = 'texgyrepagella', 
+--				[family_index[2]] = 'texgyreheros', 
+--				[family_index[3]] = 'texgyrecursor'}
+--    for v1 in values (family_index) do
+--	latin_font_model[v1] = {}
+--	for v2 in values (type_index) do
+--	    latin_font_model[v1][v2] = latin_default_font[v1] .. v2
+--	end
+--    end
+
+    latin_font_model[family_index[1]] = {[type_index[1]]='lmroman12regular',
+					 [type_index[2]]='lmroman12bold',
+					 [type_index[3]]='lmroman12italic',
+					 [type_index[4]]='lmroman10bolditalic'}
+    latin_font_model[family_index[2]] = {[type_index[1]]='lmsans12regular',
+					 [type_index[2]]='lmsans10bold',
+					 [type_index[3]]='lmsans12oblique',
+					 [type_index[4]]='lmsans10boldoblique'}
+    latin_font_model[family_index[3]] = {[type_index[1]]='lmmono12regular',
+					 [type_index[2]]='lmmonolt10bold',
+					 [type_index[3]]='lmmono10italic',
+					 [type_index[4]]='lmmonolt10boldoblique'}
 end
 
 local function verify_font_model ()
