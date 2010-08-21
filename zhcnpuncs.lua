@@ -1,6 +1,6 @@
 zhcnpuncs = zhcnpuncs or {}
 
-local glyph = nodes.register (node.new ("glyph", 0))
+local glyph = nodes.pool.register (node.new ("glyph", 0))
 
 local glyph_flag = node.id ('glyph')
 local glue_flag  = node.id ('glue')
@@ -17,11 +17,13 @@ local node_slide = node.slide
 local list_tail = node.tail
 local insert_before = node.insert_before
 local insert_after = node.insert_after
-local new_glue = nodes.glue
-local new_kern = nodes.kern
-local new_glue_spec = nodes.glue_spec
-local new_penalty = nodes.penalty
-local new_rule    = nodes.rule
+local new_glue = nodes.pool.glue
+local new_kern = nodes.pool.kern
+local new_glue_spec = nodes.pool.glue_spec
+local new_penalty = nodes.pool.penalty
+local new_rule    = nodes.pool.rule
+
+local tasks = nodes.tasks
 
 
 local puncs = {
@@ -130,52 +132,6 @@ local function process_punc (head, n, punc_flag, punc_table)
     insert_after (head, n, new_kern (r_kern))
 end
 
-local function shrink_glues (head)
-    for n in node_traverse_id (glyph_flag, head) do
-	local desc = fontdata[n.font].descriptions[n.char]
-	local r = quad_multiple (n.font, 1)
-	local s = 0
-	if desc then
-	    s = r * (desc.width - (desc.boundingbox[3] 
-				   - desc.boundingbox[1])) / desc.width
-	end
-	local i = 1
-	local those_glue = {}
-	local nn = n.next
-	while nn do
-	    if nn.id == glyph_flag then
-		break
-	    elseif nn.id == math_flag then
-		those_glue = nil
-		break
-	    elseif nn.id == glue_flag then
-		those_glue[i] = nn
-	    end
-	    nn = nn.next
-	    i = i + 1
-	end
-	if those_glue and #those_glue ~= 0 then
-	    for i in pairs (those_glue) do
-		those_glue[i].spec.shrink = those_glue[i].spec.shrink + s
-	    end
-	end
-    end
-end
-
-local function stretch_glues (head, orphan_width, restrict)
-    local m = node_slide (head)
-    local test_width = 0
-    local upper = restrict * orphan_width
-    while m do
-	if (test_width >= upper) then
-	    break;
-	end
-	insert_after (head, m, new_penalty (10000))
-	test_width = test_width + node_dimensions (m)
-	m = m.prev
-    end
-end
-
 local function compress_punc (head)
     for n in node_traverse_id (glyph_flag, head) do
 	local n_flag = is_zhcnpunc_node_group (n)
@@ -185,87 +141,11 @@ local function compress_punc (head)
     end
 end
 
-local function margin_align (head)
-    local hlist_num = node_count (hlist_flag, head)
-    local hlist_count = 1
-    for n in node_traverse_id (hlist_flag, head) do
-	local glyph_num = node_count (glyph_flag, n.list)
-	local glyph_count, offset, stretch = 1, 0, 0
-	local offset_line_head = nil
-	for e in node_traverse_id (glyph_flag, n.list) do
-	    local desc = fontdata[e.font].descriptions[e.char]
-	    local quad = quad_multiple (e.font, 1)
-	    if glyph_count == 1 and is_zhcnpunc_node (e) then
-		local m = puncs[e.char][1]
-		offset = - m * quad 
-		offset_line_head = e
-	    elseif glyph_count == glyph_num and is_zhcnpunc_node (e) then
-		local m = puncs[e.char][2]
-		stretch = m  * quad
-	    end
-	    glyph_count = glyph_count + 1
-	end
-	if offset ~= 0 then
-	    n.list = insert_before (n.list, offset_line_head, new_kern (offset))
-	end
-	-- 段落的最后一行不处理
-	if hlist_count < hlist_num then
-	    if offset ~= 0 or stretch ~= 0 then
-		local offset_unit = (-offset + stretch) / glyph_num
-		for e in node_traverse_id (glyph_flag, n.list) do
-		    insert_after (n.list, e, new_kern (offset_unit))
-		end
-	    end
-	end
-    end
-end
-
-local function orphan_line_last_check (head, restrict)
-    local hlist_num = node_count (hlist_flag, head)
-    local hlist_count = 1
-    for n in node_traverse_id (hlist_flag, head) do
-	if hlist_count ~= 1 and hlist_count == hlist_num then
-	    local hsize = tex.hsize
-	    local line_width = node.dimensions (n.list)
-	    local ratio = line_width / hsize
-	    if ratio > 0 and ratio < restrict then
-		local line_end = node_slide (n.list)
-		while line_end do
-		    if line_end.id == glyph_flag then
-			insert_after (n.list, line_end, new_rule ((1 - ratio) * hsize))
-			break
-		    end
-		    line_end = line_end.prev
-		end
-	    end
-	end
-	hlist_count = hlist_count + 1
-    end
-end
-
-local old_pre_linebreak_filter = callback.find ('pre_linebreak_filter')
-local old_post_linebreak_filter = callback.find ('pre_linebreak_filter')
-
-local function my_pre_linebreak_filter (head, groupcode)
-    if old_pre_linebreak_filter then 
-	old_pre_linebreak_filter (head, groupcode)
-    end
-    if groupcode ~= '' then return true end
+function zhcnpuncs.my_linebreak_filter (head, is_display)
     compress_punc (head)
-    return true
-end
-
-local function my_post_linebreak_filter (head, groupcode)
-    if old_post_linebreak_filter then 
-	old_post_linebreak_filter (head, groupcode)
-    end
-    if groupcode ~= '' then return true end
-    margin_align (head)
-    orphan_line_last_check (head, 0.15)
-    return true
+    return head, true
 end
 
 function zhcnpuncs.opt ()
-    callback.register ('pre_linebreak_filter', my_pre_linebreak_filter)
-    callback.register ('post_linebreak_filter', my_post_linebreak_filter)
+    tasks.appendaction("processors","after","zhcnpuncs.my_linebreak_filter")
 end

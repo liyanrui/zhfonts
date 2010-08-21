@@ -15,6 +15,27 @@
 
 \setupmodule[size=,style=]
 
+% 标点
+\startluacode
+fonts.protrusions.vectors['myvector'] = {  
+   [0xFF0c] = { 0, 0.60 },  -- ，
+   [0x3002] = { 0, 0.60 },  -- 。
+   [0x201C] = { 0.50, 0 },  -- “
+   [0x201D] = { 0, 0.50 },  -- ”
+   [0xFF1F] = { 0, 0.60 },  -- ？
+   [0x300A] = { 0.60, 0 },  -- 《
+   [0x300B] = { 0, 0.60 },  -- 》
+   [0xFF08] = { 0.50, 0 },  -- （
+   [0xFF09] = { 0, 0.50 },  -- ）
+   [0x3001] = { 0, 0.50 },  -- 、
+}
+fonts.protrusions.classes['mypure'] = {
+   vector = 'myvector', factor = 1
+}
+\stopluacode
+\definefontfeature[zh][protrusion=mypure,liga=yes]
+\setupalign[hz,hanging]
+
 \startluacode
 dofile (kpse.find_file ("zhfonts", "lua"))
 \stopluacode
@@ -38,6 +59,8 @@ dofile (kpse.find_file ("zhfonts", "lua"))
         {\usezhfonts[\currentmoduleparameter{style},\currentmoduleparameter{size}]}%
         {\usezhfonts[\currentmoduleparameter{style},11pt]}%
 }
+
+
 
 \stopmodule
 \protect

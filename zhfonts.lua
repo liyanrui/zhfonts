@@ -102,9 +102,9 @@ function zhfonts.gen_text_typescript ()
     end
 
     context ('\\starttypescript[zhfonts]')
-    context ('\\definetypeface[zhfonts][rm][serif][zhfonts][default]')
-    context ('\\definetypeface[zhfonts][ss][sans][zhfonts][default]')
-    context ('\\definetypeface[zhfonts][tt][mono][zhfonts][default]')
+    context ('\\definetypeface[zhfonts][rm][serif][zhfonts][default][features=zh]')
+    context ('\\definetypeface[zhfonts][ss][sans][zhfonts][default][features=zh]')
+    context ('\\definetypeface[zhfonts][tt][mono][zhfonts][default][features=zh]')
     context ('\\stoptypescript')
 
     context ('\\usetypescript[zhfonts]')
@@ -135,7 +135,7 @@ function zhfonts.use (param)
     dofile (kpse.find_file ('zhcnpuncs', 'lua'))
 
     if zhfonts_use_count == 1 then
-	zhcnpuncs.opt ()
+     	zhcnpuncs.opt ()
     end
 
     context ('\\setupbodyfont[zhfonts, ' .. param .. ']')
