@@ -131,8 +131,7 @@ function zhfonts.use (param)
     if not verify_font_model () then gen_default_font_model () end
     zhfonts.gen_text_typescript ()
     context ('\\setscript[hanzi]')
-
-    dofile (kpse.find_file ('zhcnpuncs', 'lua'))
+    dofile (resolvers.findfile ("zhcnpuncs.lua"))
 
     if zhfonts_use_count == 1 then
      	zhcnpuncs.opt ()

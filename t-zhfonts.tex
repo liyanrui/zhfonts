@@ -33,11 +33,11 @@ fonts.protrusions.classes['mypure'] = {
    vector = 'myvector', factor = 1
 }
 \stopluacode
-\definefontfeature[zh][protrusion=mypure,liga=yes]
+\definefontfeature[zh][mode=node,protrusion=mypure,liga=yes]
 \setupalign[hz,hanging]
 
 \startluacode
-dofile (kpse.find_file ("zhfonts", "lua"))
+dofile (resolvers.findfile ("zhfonts.lua"))
 \stopluacode
 
 \def\setupzhfonts{\dodoubleempty\dosetupzhfonts}
@@ -59,8 +59,6 @@ dofile (kpse.find_file ("zhfonts", "lua"))
         {\usezhfonts[\currentmoduleparameter{style},\currentmoduleparameter{size}]}%
         {\usezhfonts[\currentmoduleparameter{style},11pt]}%
 }
-
-
 
 \stopmodule
 \protect
