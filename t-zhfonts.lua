@@ -131,10 +131,10 @@ function zhfonts.use (param)
     if not verify_font_model () then gen_default_font_model () end
     zhfonts.gen_text_typescript ()
     context ('\\setscript[hanzi]')
-    dofile (resolvers.findfile ("zhcnpuncs.lua"))
+    dofile (resolvers.findfile ("t-zhspuncs.lua"))
 
     if zhfonts_use_count == 1 then
-     	zhcnpuncs.opt ()
+     	zhspuncs.opt ()
     end
 
     context ('\\setupbodyfont[zhfonts, ' .. param .. ']')

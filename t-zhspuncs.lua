@@ -1,14 +1,15 @@
-zhcnpuncs = zhcnpuncs or {}
+zhspuncs = zhspuncs or {}
 
 local glyph = nodes.pool.register (node.new ("glyph", 0))
 
-local glyph_flag = node.id ('glyph')
-local glue_flag  = node.id ('glue')
-local hlist_flag = node.id ('hlist')
-local kern_flag  = node.id ('kern')
+local glyph_flag   = node.id ('glyph')
+local glue_flag    = node.id ('glue')
+local hlist_flag   = node.id ('hlist')
+local kern_flag    = node.id ('kern')
 local penalty_flag = node.id ('penalty')
-local math_flag = node.id ('math')
-local fontdata   = fonts.ids
+local math_flag    = node.id ('math')
+local fontdata     = fonts.ids
+local quaddata     = fonts.quads
 
 local node_count = node.count
 local node_dimensions = node.dimensions
@@ -108,8 +109,7 @@ local function is_cjk_ideo (n)
 end
 
 local function quad_multiple (font, r)
-    local parameters = fontdata[font].parameters
-    local quad = (parameters and parameters.quad or parameters[6]) or 0
+    local quad = quaddata[font]
     return r * quad
 end
 
@@ -141,11 +141,11 @@ local function compress_punc (head)
     end
 end
 
-function zhcnpuncs.my_linebreak_filter (head, is_display)
+function zhspuncs.my_linebreak_filter (head, is_display)
     compress_punc (head)
     return head, true
 end
 
-function zhcnpuncs.opt ()
-    tasks.appendaction("processors","after","zhcnpuncs.my_linebreak_filter")
+function zhspuncs.opt ()
+    tasks.appendaction("processors","after","zhspuncs.my_linebreak_filter")
 end
