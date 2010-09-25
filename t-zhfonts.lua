@@ -86,6 +86,7 @@ function zhfonts.gen_text_typescript ()
     for family in values (families) do
 	local lp1 = string.lower (family)
 	context ('\\starttypescript[' .. lp1 .. '][zhfonts]')
+	context ('\\setups[font:fallbacks:' .. lp1 .. ']')
 	for type in values (types) do
 	    local lp2 = string.lower (type)
 	    if lp2 == '' then lp2 = 'regular' end
