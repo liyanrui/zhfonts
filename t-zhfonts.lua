@@ -91,9 +91,9 @@ function zhfonts.gen_text_typescript ()
 	    local lp2 = string.lower (type)
 	    if lp2 == '' then lp2 = 'regular' end
 	    context ('\\definefontsynonym[latin' .. family .. type .. ']'
-		     .. '[name:' .. latin_font_model[lp1][lp2] .. ']')
+		    .. '[name:' .. latin_font_model[lp1][lp2] .. ']')
 	    context ('\\definefontfallback[zh' .. family .. type .. ']'
-		       .. '[name:' .. zh_font_model[lp1][lp2] .. ']' .. override_area)
+		    .. '[name:' .. zh_font_model[lp1][lp2] .. ']' .. override_area)
 	    context ('\\definefontsynonym[zh' .. family .. type .. 'fallback]'
 		       .. '[latin' .. family .. type .. ']'
 		       .. '[fallbacks=zh' ..   family .. type .. ']')
