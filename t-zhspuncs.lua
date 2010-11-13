@@ -8,7 +8,7 @@ local hlist_flag   = node.id ('hlist')
 local kern_flag    = node.id ('kern')
 local penalty_flag = node.id ('penalty')
 local math_flag    = node.id ('math')
-local fontdata     = fonts.ids
+local fontdata     = fonts.identifiers
 local quaddata     = fonts.quads
 
 local node_count = node.count
