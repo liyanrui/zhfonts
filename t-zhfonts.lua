@@ -111,7 +111,7 @@ function zhfonts.gen_text_typescript ()
     context ('\\usetypescript[zhfonts]')
 end
 
-function zhfonts.refresh_font_model (language, family, types)
+function zhfonts.setup (language, family, types)
     if not verify_font_model () then gen_default_font_model () end
     local model = nil
     local font_array = strsplit (types, ',')
@@ -125,6 +125,16 @@ function zhfonts.refresh_font_model (language, family, types)
     end
 end
 
+function zhfonts.refresh (lang_and_family, types)
+    local lft = strsplit (lang_and_family, ',')
+    if #lft == 1 then zhfonts.setup ('zh', lft[1], types) end
+    if #lft == 2 then 
+	local family = nil
+	if strtrim (lft[1]) == 'latin' then family = lft[2] end
+	if strtrim (lft[2]) == 'latin' then family = lft[1] end
+	zhfonts.setup ('latin', family, types) 
+    end    
+end
 
 local zhfonts_use_count = 1
 

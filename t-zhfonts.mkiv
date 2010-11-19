@@ -13,8 +13,6 @@
 \unprotect
 \startmodule[zhfonts]
 
-\setupmodule[size=,style=]
-
 % 标点
 \startluacode
 fonts.protrusions.vectors['myvector'] = {  
@@ -33,6 +31,7 @@ fonts.protrusions.classes['mypure'] = {
    vector = 'myvector', factor = 1
 }
 \stopluacode
+
 \definefontfeature[zh][mode=node,protrusion=mypure,liga=yes]
 \setupalign[hz,hanging]
 
@@ -42,22 +41,11 @@ dofile (resolvers.findfile ("t-zhfonts.lua"))
 
 \def\setupzhfonts{\dodoubleempty\dosetupzhfonts}
 \def\dosetupzhfonts[#1][#2]{%
-    \ctxlua{zhfonts.refresh_font_model ('zh', '#1', '#2')}
+    \ctxlua{zhfonts.refresh ('#1', '#2')}
 }
 
-\def\setuplatinfonts{\dodoubleempty\dosetuplatinfonts}
-\def\dosetuplatinfonts[#1][#2]{%
-    \ctxlua{zhfonts.refresh_font_model ('latin', '#1', '#2')}
-}
-
-\def\usezhfonts[#1]{%
-    \ctxlua{zhfonts.use ('#1')}
-}
-
-\doifnot{\currentmoduleparameter{style}}{dim}{%
-    \doifsomethingelse{\currentmoduleparameter{size}}
-        {\usezhfonts[\currentmoduleparameter{style},\currentmoduleparameter{size}]}%
-        {\usezhfonts[\currentmoduleparameter{style},11pt]}%
+\def\zhfonts[#1]{%
+    \ctxlua{zhfonts.use ("#1")}
 }
 
 \stopmodule
