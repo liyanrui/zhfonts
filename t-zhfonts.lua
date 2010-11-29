@@ -177,8 +177,11 @@ end
 
 local function gen_math_typescript (ft)
     local s = ft.roman
-    context ('\\starttypescript[math][zhfonts]')   
-    context ('\\definefontsynonym[MathRoman][name:'..s.name..'][features='..s.feature..', goodies='..s.goodies..']')
+    context ('\\starttypescript[math][zhfonts]')
+    context ('\\setups[font:fallbacks:serif]')
+    if mathfonts.roman.name then
+	context ('\\definefontsynonym[MathRoman][name:'..s.name..'][features='..s.feature..', goodies='..s.goodies..']')
+    end
     context ('\\stoptypescript')
 end
 
@@ -205,17 +208,7 @@ local function setup_cjkfonts (meta, fontlist)
     for i, v in ipairs (fontlist) do
 	f = str_split_and_strim (v, '=')
 	g = str_split_and_strim (f[2], '@')
-	cjkfonts[meta][f[1]].name = g[1]
-	if g[2] then cjkfonts[meta][f[1]].rscale = g[2] end
-    end
-end
-
-local function setup_cjkfonts (meta, fontlist)
-    local f, g = nil, nil
-    for i, v in ipairs (fontlist) do
-	f = str_split_and_strim (v, '=')
-	g = str_split_and_strim (f[2], '@')
-	cjkfonts[meta][f[1]].name = g[1]
+	if g[1] ~= '' then cjkfonts[meta][f[1]].name = g[1] end
 	if g[2] then cjkfonts[meta][f[1]].rscale = g[2] end
     end
 end
@@ -228,11 +221,15 @@ local function setup_latinfonts (meta, fontlist)
     end   
 end
 
-local function setup_mathfonts (meta, fontlist)
+local function setup_mathfonts (fontlist)
     local f, g = nil, nil
     for i, v in ipairs (fontlist) do
 	f = str_split_and_strim (v, '=')
-	mathfonts[meta][f[1]].name = f[2]
+	if f[2] ~= '' then 
+	    mathfonts[f[1]].name = f[2]
+	else
+	    mathfonts[f[1]].name = nil
+	end
     end   
 end
 
@@ -240,11 +237,10 @@ function zhfonts.setup (metainfo, fontinfo)
     local m = str_split_and_strim (metainfo, ',')
     local f = str_split_and_strim (fontinfo, ',')
     if #m == 1 and cjkfonts[m[1]] then setup_cjkfonts (m[1], f)  end
+    if #m == 1 and m[1] == 'math' then setup_mathfonts (f) end
     if #m == 2 then
 	if m[1] == 'latin' and latinfonts[m[2]] then setup_latinfonts (m[2], f) end
-	if m[2] == 'latin' and latinfonts[m[1]] then setup_latinfonts (m[1], f) end
-	if m[1] == 'math' and latinfonts[m[2]] then setup_mathfonts (m[2], f) end
-	if m[2] == 'math' and latinfonts[m[1]] then setup_mathfonts (m[1], f) end	
+	if m[2] == 'latin' and latinfonts[m[1]] then setup_latinfonts (m[1], f) end	
     end
 end
 
