@@ -22,7 +22,7 @@ local function strtrim (str)
     return string.gsub (str, "^%s*(.-)%s*$", "%1")
 end
 
-local function str_split_and_strim (str, sep)
+local function str_split_and_trim (str, sep)
     local strlist = strsplit (str, sep)
     local result  = {}
     for i, v in ipairs (strlist) do
@@ -200,14 +200,13 @@ function zhfonts.gen_typescript ()
     gen_fallback_typescript ()
     gen_math_typescript (mathfonts)
     gen_typeface ()
-    context ('\\usetypescript[zhfonts]')
 end
 
 local function setup_cjkfonts (meta, fontlist)
     local f, g = nil, nil
     for i, v in ipairs (fontlist) do
-	f = str_split_and_strim (v, '=')
-	g = str_split_and_strim (f[2], '@')
+	f = str_split_and_trim (v, '=')
+	g = str_split_and_trim (f[2], '@')
 	if g[1] ~= '' then cjkfonts[meta][f[1]].name = g[1] end
 	if g[2] then cjkfonts[meta][f[1]].rscale = g[2] end
     end
@@ -216,7 +215,7 @@ end
 local function setup_latinfonts (meta, fontlist)
     local f, g = nil, nil
     for i, v in ipairs (fontlist) do
-	f = str_split_and_strim (v, '=')
+	f = str_split_and_trim (v, '=')
 	latinfonts[meta][f[1]].name = f[2]
     end   
 end
@@ -224,7 +223,7 @@ end
 local function setup_mathfonts (fontlist)
     local f, g = nil, nil
     for i, v in ipairs (fontlist) do
-	f = str_split_and_strim (v, '=')
+	f = str_split_and_trim (v, '=')
 	if f[2] ~= '' then 
 	    mathfonts[f[1]].name = f[2]
 	else
@@ -234,8 +233,8 @@ local function setup_mathfonts (fontlist)
 end
 
 function zhfonts.setup (metainfo, fontinfo)
-    local m = str_split_and_strim (metainfo, ',')
-    local f = str_split_and_strim (fontinfo, ',')
+    local m = str_split_and_trim (metainfo, ',')
+    local f = str_split_and_trim (fontinfo, ',')
     if #m == 1 and cjkfonts[m[1]] then setup_cjkfonts (m[1], f)  end
     if #m == 1 and m[1] == 'math' then setup_mathfonts (f) end
     if #m == 2 then
@@ -245,9 +244,17 @@ function zhfonts.setup (metainfo, fontinfo)
 end
 
 function zhfonts.use (param)
-    zhfonts.gen_typescript ()
     context ('\\setscript[hanzi]')
     dofile (resolvers.findfile ("t-zhspuncs.lua"))
     zhspuncs.opt ()
-    context ('\\setupbodyfont[zhfonts, ' .. param .. ']')
+    context ('\\definefontfeature[zh][mode=node,protrusion=mypure,liga=yes]')
+    context ('\\setupalign[hz,hanging]')
+    local f = strtrim (param)
+    if f ~= "none" then
+        zhfonts.gen_typescript ()
+        if f ~= "hack" then
+	    context ('\\usetypescript[zhfonts]')
+            context ('\\setupbodyfont[zhfonts, ' .. param .. ']') 
+        end
+    end
 end
