@@ -13,10 +13,7 @@
 \unprotect
 \startmodule[zhfonts]
 
-
-\startluacode
-dofile (resolvers.findfile ("t-zhfonts.lua"))
-\stopluacode
+\ctxloadluafile{t-zhfonts}{}
 
 \def\setupzhfonts{\dodoubleempty\dosetupzhfonts}
 \def\dosetupzhfonts[#1][#2]{%
