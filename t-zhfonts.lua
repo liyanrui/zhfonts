@@ -245,7 +245,6 @@ end
 
 function zhfonts.use (param)
     context ('\\setscript[hanzi]')
-    dofile (resolvers.findfile ("t-zhspuncs.lua"))
     zhspuncs.opt ()
     context ('\\definefontfeature[zh][mode=node,protrusion=mypure,liga=yes]')
     context ('\\setupalign[hz,hanging]')
