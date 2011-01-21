@@ -13,11 +13,7 @@
 \unprotect
 \startmodule[zhfonts]
 
-\startinterface all
-  \setinterfaceconstant{unconcern}{unconcern}
-\stopinterface
-
-\setupmodule[style=]
+\setupmodule[\c!style=]
 
 %D Lua code
 \ctxloadluafile{t-zhfonts}{}
@@ -32,7 +28,7 @@
     \ctxlua{zhfonts.use ("#1")}
 }
 
-\doif{\currentmoduleparameter{style}}{\c!unconcern}{\zhfonts[rm,11pt]}
+\doif{\currentmoduleparameter{style}}{\v!default}{\zhfonts[rm,11pt]}
 
 \stopmodule
 \protect
