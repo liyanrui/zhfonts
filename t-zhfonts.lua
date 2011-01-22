@@ -1,36 +1,5 @@
 zhfonts = {}
 
-local function strsplit(str, sep)
-    local start_pos = 1
-    local split_pos = 1
-    local result = {}
-    local stop_pos = nil
-    while true do
-        stop_pos = string.find (str, sep, start_pos)
-        if not stop_pos then
-            result[split_pos] = string.sub (str, start_pos, string.len(str))
-            break
-        end
-        result[split_pos] = string.sub (str, start_pos, stop_pos - 1)
-        start_pos = stop_pos + string.len(sep)
-        split_pos = split_pos + 1
-    end
-    return result
-end
-
-local function strtrim (str)
-    return string.gsub (str, "^%s*(.-)%s*$", "%1")
-end
-
-local function str_split_and_trim (str, sep)
-    local strlist = strsplit (str, sep)
-    local result  = {}
-    for i, v in ipairs (strlist) do
-	result[i] = strtrim (v)
-    end
-    return result
-end
-
 local function init_fonts_table ()
     local f = {}
     f.serif, f.sans, f.mono = {}, {}, {}
@@ -72,6 +41,37 @@ local mathfonts = {roman = {}}
 mathfonts.roman.name = 'xitsmathregular'
 mathfonts.roman.feature = 'math\mathsizesuffix'
 mathfonts.roman.goodies = 'xits-math'
+
+local function strsplit(str, sep)
+    local start_pos = 1
+    local split_pos = 1
+    local result = {}
+    local stop_pos = nil
+    while true do
+        stop_pos = string.find (str, sep, start_pos)
+        if not stop_pos then
+            result[split_pos] = string.sub (str, start_pos, string.len(str))
+            break
+        end
+        result[split_pos] = string.sub (str, start_pos, stop_pos - 1)
+        start_pos = stop_pos + string.len(sep)
+        split_pos = split_pos + 1
+    end
+    return result
+end
+
+local function strtrim (str)
+    return string.gsub (str, "^%s*(.-)%s*$", "%1")
+end
+
+local function str_split_and_trim (str, sep)
+    local strlist = strsplit (str, sep)
+    local result  = {}
+    for i, v in ipairs (strlist) do
+	result[i] = strtrim (v)
+    end
+    return result
+end
 
 local function gen_cjk_typescript (ft)
     local fb = '\\definefontfallback'
@@ -232,9 +232,17 @@ local function setup_mathfonts (fontlist)
     end   
 end
 
+
+local fontfeatures = "mode=node,protrusion=mypure,liga=yes,"
+local function setup_fontfeatures (s)
+    fontfeatures = fontfeatures .. s
+    print (fontfeatures)
+end
+
 function zhfonts.setup (metainfo, fontinfo)
     local m = str_split_and_trim (metainfo, ',')
     local f = str_split_and_trim (fontinfo, ',')
+    if #m == 1 and m[1] == 'feature' then setup_fontfeatures (fontinfo) end
     if #m == 1 and cjkfonts[m[1]] then setup_cjkfonts (m[1], f)  end
     if #m == 1 and m[1] == 'math' then setup_mathfonts (f) end
     if #m == 2 then
@@ -246,7 +254,7 @@ end
 function zhfonts.use (param)
     context ('\\setscript[hanzi]')
     zhspuncs.opt ()
-    context ('\\definefontfeature[zh][mode=node,protrusion=mypure,liga=yes]')
+    context ('\\definefontfeature[zh][' .. fontfeatures .. ']')
     context ('\\setupalign[hz,hanging]')
     local f = strtrim (param)
     if f ~= "none" then
