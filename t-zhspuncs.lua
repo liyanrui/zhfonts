@@ -8,8 +8,10 @@ local hlist_flag   = node.id ('hlist')
 local kern_flag    = node.id ('kern')
 local penalty_flag = node.id ('penalty')
 local math_flag    = node.id ('math')
-local fontdata     = fonts.identifiers
-local quaddata     = fonts.quads
+
+local fonthashes = fonts.hashes
+local fontdata   = fonthashes.identifiers
+local quaddata   = fonthashes.quads
 
 local node_count = node.count
 local node_dimensions = node.dimensions
@@ -166,7 +168,7 @@ fonts.protrusions.vectors['myvector'] = {
    [0x3001] = { 0, 0.50 },  -- 、
    [0xFF0E] = { 0, 0.50 },  -- ．
 }
-fonts.protrusions.classes['mypure'] = {
+fonts.protrusions.classes['myvector'] = {
    vector = 'myvector', factor = 1
 }
 

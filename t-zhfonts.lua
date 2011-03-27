@@ -233,7 +233,7 @@ local function setup_mathfonts (fontlist)
 end
 
 
-local fontfeatures = "mode=node,protrusion=mypure,liga=yes,"
+local fontfeatures = "mode=node,protrusion=myvector,liga=yes,"
 local function setup_fontfeatures (s)
     fontfeatures = fontfeatures .. s
     print (fontfeatures)
@@ -254,7 +254,7 @@ end
 function zhfonts.use (param)
     context ('\\setscript[hanzi]')
     zhspuncs.opt ()
-    context ('\\definefontfeature[zh][' .. fontfeatures .. ']')
+    context ('\\definefontfeature[zh][default][' .. fontfeatures .. ']')
     context ('\\setupalign[hz,hanging]')
     local f = strtrim (param)
     if f ~= "none" then
