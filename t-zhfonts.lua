@@ -32,10 +32,10 @@ latinfonts.sans.regular     = {name = 'texgyreherosregular'}
 latinfonts.sans.bold        = {name = 'texgyreherosbold'}
 latinfonts.sans.italic      = {name = 'texgyreherositalic'}
 latinfonts.sans.bolditalic  = {name = 'texgyreherosbolditalic'}
-latinfonts.mono.regular     = {name = 'texgyrecursorregular'}
-latinfonts.mono.bold        = {name = 'texgyrecursorbold'}
-latinfonts.mono.italic      = {name = 'texgyrecursoritalic'}
-latinfonts.mono.bolditalic  = {name = 'texgyrecursorbolditalic'}
+latinfonts.mono.regular     = {name = 'latinmodernmonolight'}
+latinfonts.mono.bold        = {name = 'latinmodernmonolightbold'}
+latinfonts.mono.italic      = {name = 'latinmodernmonolightitalic'}
+latinfonts.mono.bolditalic  = {name = 'latinmodernmonolightbolditalic'}
 
 local mathfonts = {roman = {}}
 mathfonts.roman.name = 'xitsmathregular'
@@ -189,8 +189,8 @@ local function gen_typeface ()
     context ('\\starttypescript[zhfonts]')
     context ('\\definetypeface[zhfonts][rm][serif][zhfonts][default][features=zh]')
     context ('\\definetypeface[zhfonts][ss][sans][zhfonts][default][features=zh]')
-    context ('\\definetypeface[zhfonts][tt][mono][zhfonts][default][features=zh]')
-    context ('\\definetypeface[zhfonts][mm][math][zhfonts][default]')
+    context ('\\definetypeface[zhfonts][tt][mono][zhfonts][default]')
+    context ('\\definetypeface[zhfonts][mm][math][zhfonts]')
     context ('\\stoptypescript')
 end
 
@@ -233,7 +233,7 @@ local function setup_mathfonts (fontlist)
 end
 
 
-local fontfeatures = "mode=node,protrusion=myvector,liga=yes,"
+local fontfeatures = "mode=node,protrusion=myvector,"
 local function setup_fontfeatures (s)
     fontfeatures = fontfeatures .. s
     print (fontfeatures)
