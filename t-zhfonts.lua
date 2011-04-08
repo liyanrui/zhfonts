@@ -233,7 +233,7 @@ local function setup_mathfonts (fontlist)
 end
 
 
-local fontfeatures = "mode=node,protrusion=myvector,"
+local fontfeatures = "mode=node,protrusion=myvector,liga=yes,"
 local function setup_fontfeatures (s)
     fontfeatures = fontfeatures .. s
     print (fontfeatures)
