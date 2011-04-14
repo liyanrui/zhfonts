@@ -32,10 +32,10 @@ latinfonts.sans.regular     = {name = 'texgyreherosregular'}
 latinfonts.sans.bold        = {name = 'texgyreherosbold'}
 latinfonts.sans.italic      = {name = 'texgyreherositalic'}
 latinfonts.sans.bolditalic  = {name = 'texgyreherosbolditalic'}
-latinfonts.mono.regular     = {name = 'latinmodernmonolight'}
-latinfonts.mono.bold        = {name = 'latinmodernmonolightbold'}
-latinfonts.mono.italic      = {name = 'latinmodernmonolightitalic'}
-latinfonts.mono.bolditalic  = {name = 'latinmodernmonolightbolditalic'}
+latinfonts.mono.regular     = {name = 'texgyrecursorregular'}
+latinfonts.mono.bold        = {name = 'texgyrecursorbold'}
+latinfonts.mono.italic      = {name = 'texgyrecursoritalic'}
+latinfonts.mono.bolditalic  = {name = 'texgyrecursorbolditalic'}
 
 local mathfonts = {roman = {}}
 mathfonts.roman.name = 'xitsmathregular'
