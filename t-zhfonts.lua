@@ -142,6 +142,7 @@ end
 
 local function gen_fallback_typescript ()
     context ('\\starttypescript[serif][zhfonts]')
+    context ('\\setups[font:fallbacks:serif]')
     context ('\\definefontsynonym[zhSeriffallback][latinSerif][fallbacks=zhSerif]')
     context ('\\definefontsynonym[Serif][zhSeriffallback]')    
     context ('\\definefontsynonym[zhSerifBoldfallback][latinSerifBold][fallbacks=zhSerifBold]')
@@ -153,6 +154,7 @@ local function gen_fallback_typescript ()
     context ('\\stoptypescript')
 
     context ('\\starttypescript[sans][zhfonts]')
+    context ('\\setups[font:fallbacks:sans]')
     context ('\\definefontsynonym[zhSansfallback][latinSans][fallbacks=zhSans]')
     context ('\\definefontsynonym[Sans][zhSansfallback]')    
     context ('\\definefontsynonym[zhSansBoldfallback][latinSansBold][fallbacks=zhSansBold]')
@@ -164,6 +166,7 @@ local function gen_fallback_typescript ()
     context ('\\stoptypescript')
 
     context ('\\starttypescript[mono][zhfonts]')
+    context ('\\setups[font:fallbacks:mono]')
     context ('\\definefontsynonym[zhMonofallback][latinMono][fallbacks=zhMono]')
     context ('\\definefontsynonym[Mono][zhMonofallback]')    
     context ('\\definefontsynonym[zhMonoBoldfallback][latinMonoBold][fallbacks=zhMonoBold]')
@@ -176,13 +179,13 @@ local function gen_fallback_typescript ()
 end
 
 local function gen_math_typescript (ft)
-    local s = ft.roman
-    context ('\\starttypescript[math][zhfonts]')
-    context ('\\setups[font:fallbacks:serif]')
     if mathfonts.roman.name then
+	local s = ft.roman
+	context ('\\starttypescript[math][zhfonts]')
+	context ('\\setups[font:fallbacks:math]')
 	context ('\\definefontsynonym[MathRoman][name:'..s.name..'][features='..s.feature..', goodies='..s.goodies..']')
+	context ('\\stoptypescript')
     end
-    context ('\\stoptypescript')
 end
 
 local function gen_typeface ()
@@ -190,7 +193,9 @@ local function gen_typeface ()
     context ('\\definetypeface[zhfonts][rm][serif][zhfonts][default][features=zh]')
     context ('\\definetypeface[zhfonts][ss][sans][zhfonts][default][features=zh]')
     context ('\\definetypeface[zhfonts][tt][mono][zhfonts][default]')
-    context ('\\definetypeface[zhfonts][mm][math][zhfonts]')
+    if mathfonts.roman.name then
+	context ('\\definetypeface[zhfonts][mm][math][zhfonts]')
+    end
     context ('\\stoptypescript')
 end
 
