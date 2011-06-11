@@ -10,10 +10,9 @@
 %D      license=Public Domain]
 
 \writestatus{loading}{ConTeXt User Module / zhfonts}
-\unprotect
 \startmodule[zhfonts]
-
-\setupmodule[\c!style=]
+\unprotect
+\setupmodule[style=rm,size=11pt]
 
 %D Lua code
 \ctxloadluafile{t-zhfonts}{}
@@ -28,9 +27,11 @@
     \ctxlua{zhfonts.use ("#1")}
 }
 
-\doif{\currentmoduleparameter{style}}{\v!default}{\zhfonts[rm,11pt]}
+\edef\@@@@??style{\currentmoduleparameter{style}}
+\edef\@@@@??size{\currentmoduleparameter{size}}
+\prependtoks \zhfonts[\@@@@??style, \@@@@??size] \to \everystarttext
 
-\stopmodule
 \protect
+\stopmodule
 \endinput
 
