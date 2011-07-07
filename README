@@ -1,0 +1,9 @@
+* Introduction
+
+zhfonts is a module for ConTeXt MkIV. It can help some users to try ConTeXt MkIV based LuaTeX for Chinese typesetting.
+
+The zhfonts is implemented by using "nodes.tasks.appendaction('processors','after', 'my_callback_function')" which is offered by ConTeXt MkIV.Therefore I could not guarantee zhfonts works all along unless my_callback_function is always valid.
+
+* Usage
+
+Please read http://garfileo.is-programmer.com/posts/23740

@@ -244,10 +244,10 @@ function zhfonts.use (param)
     zhspuncs.opt ()
     context ('\\definefontfeature[zh][default][' .. fontfeatures .. ']')
     context ('\\setupalign[hz,hanging]')
-    local f = string_strip (param)
-    if f ~= "none" then
+    local arg_list = string_split_and_strip (param, ',')
+    if arg_list[1] ~= "none" and arg_list[2] ~= "none" then
         zhfonts.gen_typescript ()
-        if f ~= "hack" then
+        if arg_list[1] ~= "hack" and arg_list[2] ~= "hack" then
 	    context ('\\usetypescript[zhfonts]')
             context ('\\setupbodyfont[zhfonts, ' .. param .. ']') 
         end
