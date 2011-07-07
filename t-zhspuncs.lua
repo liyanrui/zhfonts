@@ -121,7 +121,7 @@ local function process_punc (head, n, punc_flag, punc_table)
     local quad = quad_multiple (n.font, 1)
 
     -- 像 $\ldots$ 这样的符号竟然没有边界盒，只好忽略并返回
-    if desc.boundingbox == nil then return end
+    -- if desc.boundingbox == nil then return end
 
     local l_space = desc.boundingbox[1] / desc.width
     local r_space = (desc.width - desc.boundingbox[3]) / desc.width

@@ -1,5 +1,19 @@
 zhfonts = {}
 
+local string_strip = string.strip
+local string_split = string.split
+local string_match = string.match
+local string_gsub  = string.gsub
+
+local function string_split_and_strip (str, sep)
+    local strlist = string_split (str, sep)
+    local result  = {}
+    for i, v in ipairs (strlist) do
+	result[i] = string_strip (v)
+    end
+    return result
+end
+
 local function init_fonts_table ()
     local f = {}
     f.serif, f.sans, f.mono = {}, {}, {}
@@ -41,37 +55,6 @@ local mathfonts = {roman = {}}
 mathfonts.roman.name = 'xitsmathregular'
 mathfonts.roman.feature = 'math\mathsizesuffix'
 mathfonts.roman.goodies = 'xits-math'
-
-local function strsplit(str, sep)
-    local start_pos = 1
-    local split_pos = 1
-    local result = {}
-    local stop_pos = nil
-    while true do
-        stop_pos = string.find (str, sep, start_pos)
-        if not stop_pos then
-            result[split_pos] = string.sub (str, start_pos, string.len(str))
-            break
-        end
-        result[split_pos] = string.sub (str, start_pos, stop_pos - 1)
-        start_pos = stop_pos + string.len(sep)
-        split_pos = split_pos + 1
-    end
-    return result
-end
-
-local function strtrim (str)
-    return string.gsub (str, "^%s*(.-)%s*$", "%1")
-end
-
-local function str_split_and_trim (str, sep)
-    local strlist = strsplit (str, sep)
-    local result  = {}
-    for i, v in ipairs (strlist) do
-	result[i] = strtrim (v)
-    end
-    return result
-end
 
 local function gen_cjk_typescript (ft)
     local fb = '\\definefontfallback'
@@ -192,7 +175,7 @@ local function gen_typeface ()
     context ('\\starttypescript[zhfonts]')
     context ('\\definetypeface[zhfonts][rm][serif][zhfonts][default][features=zh]')
     context ('\\definetypeface[zhfonts][ss][sans][zhfonts][default][features=zh]')
-    context ('\\definetypeface[zhfonts][tt][mono][zhfonts][default]')
+    context ('\\definetypeface[zhfonts][tt][mono][zhfonts][default][features=default]')
     if mathfonts.roman.name then
 	context ('\\definetypeface[zhfonts][mm][math][zhfonts]')
     end
@@ -210,8 +193,8 @@ end
 local function setup_cjkfonts (meta, fontlist)
     local f, g = nil, nil
     for i, v in ipairs (fontlist) do
-	f = str_split_and_trim (v, '=')
-	g = str_split_and_trim (f[2], '@')
+	f = string_split_and_strip (v, '=')
+	g = string_split_and_strip (f[2], '@')
 	if g[1] ~= '' then cjkfonts[meta][f[1]].name = g[1] end
 	if g[2] then cjkfonts[meta][f[1]].rscale = g[2] end
     end
@@ -220,7 +203,7 @@ end
 local function setup_latinfonts (meta, fontlist)
     local f, g = nil, nil
     for i, v in ipairs (fontlist) do
-	f = str_split_and_trim (v, '=')
+	f = string_split_and_strip (v, '=')
 	latinfonts[meta][f[1]].name = f[2]
     end   
 end
@@ -228,7 +211,7 @@ end
 local function setup_mathfonts (fontlist)
     local f, g = nil, nil
     for i, v in ipairs (fontlist) do
-	f = str_split_and_trim (v, '=')
+	f = string_split_and_strip (v, '=')
 	if f[2] ~= '' then 
 	    mathfonts[f[1]].name = f[2]
 	else
@@ -245,8 +228,8 @@ local function setup_fontfeatures (s)
 end
 
 function zhfonts.setup (metainfo, fontinfo)
-    local m = str_split_and_trim (metainfo, ',')
-    local f = str_split_and_trim (fontinfo, ',')
+    local m = string_split_and_strip (metainfo, ',')
+    local f = string_split_and_strip (fontinfo, ',')
     if #m == 1 and m[1] == 'feature' then setup_fontfeatures (fontinfo) end
     if #m == 1 and cjkfonts[m[1]] then setup_cjkfonts (m[1], f)  end
     if #m == 1 and m[1] == 'math' then setup_mathfonts (f) end
@@ -261,7 +244,7 @@ function zhfonts.use (param)
     zhspuncs.opt ()
     context ('\\definefontfeature[zh][default][' .. fontfeatures .. ']')
     context ('\\setupalign[hz,hanging]')
-    local f = strtrim (param)
+    local f = string_strip (param)
     if f ~= "none" then
         zhfonts.gen_typescript ()
         if f ~= "hack" then
