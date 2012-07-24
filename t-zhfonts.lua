@@ -220,7 +220,6 @@ local function setup_mathfonts (fontlist)
     end   
 end
 
-
 local fontfeatures = "mode=node,protrusion=myvector,liga=yes,"
 local function setup_fontfeatures (s)
     fontfeatures = fontfeatures .. s
@@ -242,10 +241,10 @@ end
 function zhfonts.use (param)
     context ('\\setscript[hanzi]')
     zhspuncs.opt ()
-    context ('\\definefontfeature[zh][default][' .. fontfeatures .. ']')
-    context ('\\setupalign[hz,hanging]')
     local arg_list = string_split_and_strip (param, ',')
     if arg_list[1] ~= "none" and arg_list[2] ~= "none" then
+	context ('\\definefontfeature[zh][default][' .. fontfeatures .. ']')
+	context ('\\setupalign[hz,hanging]')
         zhfonts.gen_typescript ()
         if arg_list[1] ~= "hack" and arg_list[2] ~= "hack" then
 	    context ('\\usetypescript[zhfonts]')

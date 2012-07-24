@@ -14,6 +14,11 @@
 \unprotect
 \setupmodule[style=rm,size=11pt]
 
+%D 预先设置文档主字体类型与尺寸，防止 ConTexT 将 12pt 作为 1em 的绝对长度
+\edef\@@@@??style{\currentmoduleparameter{style}}
+\edef\@@@@??size{\currentmoduleparameter{size}}
+\setupbodyfont[\@@@@??style,\@@@@??size]
+
 %D Lua code
 \ctxloadluafile{t-zhfonts}
 \ctxloadluafile{t-zhspuncs}
@@ -27,8 +32,6 @@
     \ctxlua{zhfonts.use ("#1")}
 }
 
-\edef\@@@@??style{\currentmoduleparameter{style}}
-\edef\@@@@??size{\currentmoduleparameter{size}}
 \prependtoks \zhfonts[\@@@@??style, \@@@@??size] \to \everystarttext
 
 \protect
