@@ -1,4 +1,7 @@
-zhfonts = {}
+moduledata = moduledata or {}
+moduledata.zhfonts = moduledata.zhfonts or {}
+local zhfonts = moduledata.zhfonts
+local zhspuncs = require "t-zhspuncs"
 
 local string_strip = string.strip
 local string_split = string.split
@@ -53,7 +56,7 @@ latinfonts.mono.bolditalic  = {name = 'lmmonolt10boldoblique'}
 
 local mathfonts = {roman = {}}
 mathfonts.roman.name = 'xitsmathregular'
-mathfonts.roman.feature = 'math\mathsizesuffix'
+mathfonts.roman.feature = 'math\\mathsizesuffix'
 mathfonts.roman.goodies = 'xits-math'
 
 local function gen_cjk_typescript (ft)
@@ -238,7 +241,7 @@ function zhfonts.setup (metainfo, fontinfo)
     end
 end
 
-function zhfonts.use (param)
+function zhfonts.main (param)
     context ('\\setscript[hanzi]')
     zhspuncs.opt ()
     local arg_list = string_split_and_strip (param, ',')
@@ -252,3 +255,4 @@ function zhfonts.use (param)
         end
     end
 end
+

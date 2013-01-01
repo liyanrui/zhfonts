@@ -1,33 +1,17 @@
 zhspuncs = zhspuncs or {}
 
 local glyph = nodes.pool.register (node.new ("glyph", 0))
-
-local glyph_flag   = node.id ('glyph')
-local glue_flag    = node.id ('glue')
-local hlist_flag   = node.id ('hlist')
-local kern_flag    = node.id ('kern')
-local penalty_flag = node.id ('penalty')
-local math_flag    = node.id ('math')
-
+local glyph_flag   = nodes.nodecodes.glyph --node.id ('glyph')
 local fonthashes = fonts.hashes
 local fontdata   = fonthashes.identifiers
 local quaddata   = fonthashes.quads
-
 local node_count = node.count
 local node_dimensions = node.dimensions
 local node_traverse_id = node.traverse_id
-local node_slide = node.slide
-local list_tail = node.tail
 local insert_before = node.insert_before
 local insert_after = node.insert_after
-local new_glue = nodes.pool.glue
 local new_kern = nodes.pool.kern
-local new_glue_spec = nodes.pool.glue_spec
-local new_penalty = nodes.pool.penalty
-local new_rule    = nodes.pool.rule
-
 local tasks = nodes.tasks
-
 
 local puncs = {
     [0x2018] = {0.5, 0.1, 1.0, 1.0}, -- ‘
@@ -175,4 +159,6 @@ fonts.protrusions.vectors['myvector'] = {
 fonts.protrusions.classes['myvector'] = {
    vector = 'myvector', factor = 1
 }
+
+return zhspuncs
 
