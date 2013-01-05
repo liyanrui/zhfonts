@@ -21,7 +21,7 @@
 
 \def\setupzhfonts{\dodoubleempty\dosetupzhfonts}
 \def\dosetupzhfonts[#1][#2]{%
-        \ctxlua{thirddata.zhfonts.setup ('#1', '#2')}
+        \ctxlua{moduledata.zhfonts.setup ('#1', '#2')}
 }
 
 \def\zhfonts[#1]{\ctxlua{moduledata.zhfonts.main ('#1')}}
