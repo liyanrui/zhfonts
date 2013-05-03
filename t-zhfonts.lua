@@ -178,7 +178,7 @@ local function gen_typeface ()
     context ('\\starttypescript[zhfonts]')
     context ('\\definetypeface[zhfonts][rm][serif][zhfonts][default][features=zh]')
     context ('\\definetypeface[zhfonts][ss][sans][zhfonts][default][features=zh]')
-    context ('\\definetypeface[zhfonts][tt][mono][zhfonts][default][features=default]')
+    context ('\\definetypeface[zhfonts][tt][mono][zhfonts][default]')
     if mathfonts.roman.name then
 	context ('\\definetypeface[zhfonts][mm][math][zhfonts]')
     end
