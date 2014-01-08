@@ -67,37 +67,37 @@ local function gen_cjk_typescript (ft)
     context ('\\starttypescript[serif][zhfonts]')
     context ('\\setups[font:fallbacks:serif]')
     s = ft.serif.regular
-    context (fb..'[zhSerif][name:'..s.name..']'..fb_area..'[rscale='..s.rscale..']')
+    context (fb..'[zhSerif][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
     s = ft.serif.bold
-    context (fb..'[zhSerifBold][name:'..s.name..']'..fb_area..'[rscale='..s.rscale..']')
+    context (fb..'[zhSerifBold][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
     s = ft.serif.italic
-    context (fb..'[zhSerifItalic][name:'..s.name..']'..fb_area..'[rscale='..s.rscale..']')
+    context (fb..'[zhSerifItalic][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
     s = ft.serif.bolditalic
-    context (fb..'[zhSerifBoldItalic][name:'..s.name..']'..fb_area..'[rscale='..s.rscale..']')
+    context (fb..'[zhSerifBoldItalic][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
     context ('\\stoptypescript')
 
     context ('\\starttypescript[sans][zhfonts]')
     context ('\\setups[font:fallbacks:sans]')
     s = ft.sans.regular
-    context (fb..'[zhSans][name:'..s.name..']'..fb_area..'[rscale='..s.rscale..']')
+    context (fb..'[zhSans][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
     s = ft.sans.bold
-    context (fb..'[zhSansBold][name:'..s.name..']'..fb_area..'[rscale='..s.rscale..']')
+    context (fb..'[zhSansBold][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
     s = ft.sans.italic
-    context (fb..'[zhSansItalic][name:'..s.name..']'..fb_area..'[rscale='..s.rscale..']')
+    context (fb..'[zhSansItalic][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
     s = ft.sans.bolditalic
-    context (fb..'[zhSansBoldItalic][name:'..s.name..']'..fb_area..'[rscale='..s.rscale..']')
+    context (fb..'[zhSansBoldItalic][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
     context ('\\stoptypescript')
 
     context ('\\starttypescript[mono][zhfonts]')
     context ('\\setups[font:fallbacks:mono]')
     s = ft.mono.regular
-    context (fb..'[zhMono][name:'..s.name..']'..fb_area..'[rscale='..s.rscale..']')
+    context (fb..'[zhMono][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
     s = ft.mono.bold
-    context (fb..'[zhMonoBold][name:'..s.name..']'..fb_area..'[rscale='..s.rscale..']')
+    context (fb..'[zhMonoBold][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
     s = ft.mono.italic
-    context (fb..'[zhMonoItalic][name:'..s.name..']'..fb_area..'[rscale='..s.rscale..']')
+    context (fb..'[zhMonoItalic][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
     s = ft.mono.bolditalic
-    context (fb..'[zhMonoBoldItalic][name:'..s.name..']'..fb_area..'[rscale='..s.rscale..']')
+    context (fb..'[zhMonoBoldItalic][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
     context ('\\stoptypescript')
 end
 
