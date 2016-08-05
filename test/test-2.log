@@ -1,0 +1,102 @@
+system          > callbacks > not registering frozen 'find_format_file'
+
+open source     > 1 > 1 > /opt/context/tex/texmf-context/tex/context/base/mkiv/cont-yes.mkiv
+
+ConTeXt  ver: 2016.03.04 10:39 MKIV beta  fmt: 2016.3.12  int: english/english
+
+system          > 'cont-new.mkiv' loaded
+open source     > 2 > 2 > /opt/context/tex/texmf-context/tex/context/base/mkiv/cont-new.mkiv
+close source    > 2 > 2 > /opt/context/tex/texmf-context/tex/context/base/mkiv/cont-new.mkiv
+system          > files > jobname 'test-2', input './test-2', result 'test-2'
+fonts           > latin modern fonts are not preloaded
+languages       > language 'en' is active
+open source     > 2 > 3 > /opt/context/tex/texmf-local/tex/context/third/zhfonts/test/test-2.tex
+resolvers       > modules > 'newotf' is not found
+resolvers       > modules > 'zhfonts' is loaded
+open source     > 3 > 4 > ../t-zhfonts.mkiv
+loading         > ConTeXt User Module / zhfonts
+resolvers       > lua > loading file '/opt/context/tex/texmf-local/tex/context/third/zhfonts/t-zhfonts.lua' succeeded
+fonts           > preloading latin modern fonts (third stage)
+open source     > 4 > 5 > /opt/context/tex/texmf-local/tex/context/third/empty-files/type-loc.mkiv
+close source    > 4 > 5 > /opt/context/tex/texmf-local/tex/context/third/empty-files/type-loc.mkiv
+fonts           > 'fallback modern-designsize rm 10pt' is loaded
+close source    > 3 > 5 > ../t-zhfonts.mkiv
+structure       > sectioning > title @ level 2 : 0.0 -> 测试
+backend         > xmp > using file '/opt/context/tex/texmf-context/tex/context/base/mkiv/lpdf-pdx.xml'
+pages           > flushing realpage 1, userpage 1
+close source    > 2 > 5 > /opt/context/tex/texmf-local/tex/context/third/zhfonts/test/test-2.tex
+close source    > 1 > 5 > /opt/context/tex/texmf-context/tex/context/base/mkiv/cont-yes.mkiv
+
+system          > structure > start used structure
+
+used structure  > text: test-2
+
+system          > structure > stop used structure
+
+
+system          > files > start used files
+
+used file       >    1: filename=cont-yes.mkiv filetype=tex foundname=/opt/context/tex/texmf-context/tex/context/base/mkiv/cont-yes.mkiv usedmethod=database
+used file       >    2: filename=publ-imp-default.lua filetype=scripts foundname=/opt/context/tex/texmf-context/tex/context/base/mkiv/publ-imp-default.lua usedmethod=database
+used file       >    3: filename=cont-new.mkiv filetype=tex foundname=/opt/context/tex/texmf-context/tex/context/base/mkiv/cont-new.mkiv usedmethod=database
+used file       >    4: filename=lang-us.lua filetype=scripts foundname=/opt/context/tex/texmf-context/tex/context/patterns/mkiv/lang-us.lua usedmethod=database
+used file       >    5: filename=/opt/context/tex/texmf-local/tex/context/third/zhfonts/test/test-2 foundname=/opt/context/tex/texmf-local/tex/context/third/zhfonts/test/test-2.tex usedmethod=qualified
+used file       >    6: filename=../t-zhfonts.mkiv foundname=../t-zhfonts.mkiv usedmethod=direct
+used file       >    7: filename=t-zhfonts.lua filetype=tex format=tex foundname=/opt/context/tex/texmf-local/tex/context/third/zhfonts/t-zhfonts.lua usedmethod=database
+used file       >    8: filename=t-zhspuncs.lua filetype=tex format=tex foundname=/opt/context/tex/texmf-local/tex/context/third/zhfonts/t-zhspuncs.lua usedmethod=database
+used file       >    9: filename=type-loc.mkiv filetype=tex foundname=/opt/context/tex/texmf-local/tex/context/third/empty-files/type-loc.mkiv usedmethod=database
+used file       >   10: filename=lm.lfg filetype=tex foundname=/opt/context/tex/texmf-context/tex/context/fonts/mkiv/lm.lfg usedmethod=database
+used file       >   11: filename=lmroman10-regular filetype=otf format=otf foundname=/opt/context/tex/texmf/fonts/opentype/public/lm/lmroman10-regular.otf usedmethod=database
+used file       >   12: filename=latinmodern-math.otf filetype=opentypefonts foundname=/opt/context/tex/texmf/fonts/opentype/public/lm-math/latinmodern-math.otf usedmethod=database
+used file       >   13: filename=texgyrepagella-regular.otf filetype=otf format=otf foundname=/opt/context/tex/texmf/fonts/opentype/public/tex-gyre/texgyrepagella-regular.otf usedmethod=database
+used file       >   14: filename=AdobeKaitiStd-Regular.otf filetype=otf format=otf foundname=/opt/context/tex/texmf-local/fonts/opentype/adobe/AdobeKaitiStd-Regular.otf usedmethod=database
+used file       >   15: filename=xits-math.otf filetype=otf format=otf foundname=/opt/context/tex/texmf-local/fonts/opentype/xits/xits-math.otf usedmethod=database
+used file       >   16: filename=lmmono10-regular.otf filetype=otf format=otf foundname=/opt/context/tex/texmf/fonts/opentype/public/lm/lmmono10-regular.otf usedmethod=database
+used file       >   17: filename=AdobeFangsongStd-Regular.otf filetype=otf format=otf foundname=/opt/context/tex/texmf-local/fonts/opentype/adobe/AdobeFangsongStd-Regular.otf usedmethod=database
+used file       >   18: filename=lpdf-pdx.xml filetype=tex foundname=/opt/context/tex/texmf-context/tex/context/base/mkiv/lpdf-pdx.xml usedmethod=database
+
+system          > files > stop used files
+
+
+system          > options > start commandline options
+
+used option     > currentrun="2"
+used option     > fulljobname="./test-2"
+used option     > input="./test-2"
+used option     > kindofrun="2"
+used option     > maxnofruns="9"
+used option     > no-parse-first-line="true"
+
+system          > options > stop commandline options
+
+system          > options > start commandline files
+
+used file       >    1: ./test-2
+
+system          > options > stop commandline files
+
+
+mkiv lua stats  > used config file: selfautoparent:/texmf/web2c/texmfcnf.lua
+mkiv lua stats  > used cache path: /opt/context/tex/texmf-cache/luatex-cache/context/5fe67e0bfe781ce0dde776fb1556f32e
+mkiv lua stats  > resource resolver: loadtime 0.010 seconds, 0 scans with scantime 0.000 seconds, 0 shared scans, 18 found files, scanned paths: <none>
+mkiv lua stats  > stored bytecode data: 384 modules (0.290 sec), 81 tables (0.013 sec), 465 chunks (0.303 sec)
+mkiv lua stats  > traced context: maxstack: 1161, freed: 0, unreachable: 1161
+mkiv lua stats  > cleaned up reserved nodes: 46 nodes, 9 lists of 441
+mkiv lua stats  > node memory usage: 2 glue, 2 penalty, 14 attribute, 28 glue_spec, 3 attribute_list, 2 temp
+mkiv lua stats  > node list callback tasks: 6 unique task lists, 5 instances (re)created, 81 calls
+mkiv lua stats  > used backend: pdf (backend for directly generating pdf output)
+mkiv lua stats  > jobdata time: 0.001 seconds saving, 0.001 seconds loading
+mkiv lua stats  > callbacks: 273 direct, 300 indirect, 573 total
+mkiv lua stats  > randomizer: resumed with value 0.55266805391417
+mkiv lua stats  > loaded tex modules: 2 requested, 1 found (*-zhfonts), 1 missing (*-newotf)
+mkiv lua stats  > loaded patterns: en::2, load time: 0.000
+mkiv lua stats  > interactive elements: 0 references, 1 destinations
+mkiv lua stats  > result saved in file: test-2.pdf, compresslevel 3, objectcompresslevel 3
+mkiv lua stats  > loaded fonts: 7 files: adobefangsongstd-regular.otf, adobekaitistd-regular.otf, xits-math.otf, latinmodern-math.otf, lmmono10-regular.otf, lmroman10-regular.otf, texgyrepagella-regular.otf
+mkiv lua stats  > font engine: otf 3.013, afm 1.500, tfm 1.000, 19 instances, 8 shared in backend, 0 common vectors, 8 common hashes, load time 1.909 seconds 
+mkiv lua stats  > used platform: linux-64, type: unix, binary subtree: texmf-linux-64
+mkiv lua stats  > luatex banner: this is luatex, version beta-0.89.2 (tex live 2016/dev)
+mkiv lua stats  > control sequences: 45432 of 65536 + 100000
+mkiv lua stats  > lua properties: engine: lua, used memory: 212 MB (ctx: 212 MB), hash type: lua, hash chars: min(64,40), symbol mask: utf (τεχ)
+mkiv lua stats  > runtime: 2.450 seconds, 1 processed pages, 1 shipped pages, 0.408 pages/second
+

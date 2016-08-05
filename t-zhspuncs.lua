@@ -104,9 +104,6 @@ local function process_punc (head, n, punc_flag, punc_table)
     if not desc then return end
     local quad = quad_multiple (n.font, 1)
 
-    -- 像 $\ldots$ 这样的符号竟然没有边界盒，只好忽略并返回
-    -- if desc.boundingbox == nil then return end
-
     local l_space = desc.boundingbox[1] / desc.width
     local r_space = (desc.width - desc.boundingbox[3]) / desc.width
     local l_kern, r_kern = 0.0, 0.0
@@ -146,8 +143,8 @@ fonts.protrusions.vectors['myvector'] = {
    [0x3002] = { 0, 0.60 },  -- 。
    [0x2018] = { 0.60, 0 },  -- ‘
    [0x2019] = { 0, 0.60 },  -- ’
-   [0x201C] = { 0.60, 0 },  -- “
-   [0x201D] = { 0, 0.60 },  -- ”
+   [0x201C] = { 0.50, 0 },  -- “
+   [0x201D] = { 0, 0.50 },  -- ”
    [0xFF1F] = { 0, 0.60 },  -- ？
    [0x300A] = { 0.60, 0 },  -- 《
    [0x300B] = { 0, 0.60 },  -- 》
