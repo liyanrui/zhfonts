@@ -1,7 +1,7 @@
 zhspuncs = zhspuncs or {}
 
-local glyph = nodes.pool.register (node.new ("glyph", 0))
-local glyph_flag   = nodes.nodecodes.glyph --node.id ('glyph')
+local hlist = nodes.nodecodes.hlist
+local glyph   = nodes.nodecodes.glyph --node.id ('glyph')
 local fonthashes = fonts.hashes
 local fontdata   = fonthashes.identifiers
 local quaddata   = fonthashes.quads
@@ -12,6 +12,26 @@ local insert_before = node.insert_before
 local insert_after = node.insert_after
 local new_kern = nodes.pool.kern
 local tasks = nodes.tasks
+
+local left_puncs = {
+    [0x2018] = 0.35, -- ‘
+    [0x201C] = 0.35, -- “
+    [0x3008] = 0.35, -- 〈
+    [0x300A] = 0.35, -- 《
+    [0x300C] = 0.35, -- 「
+    [0x300E] = 0.35, -- 『
+    [0x3010] = 0.35, -- 【
+    [0x3014] = 0.35, -- 〔
+    [0x3016] = 0.35, -- 〖
+    [0xFF08] = 0.35, -- （
+    [0xFF3B] = 0.35, -- ［
+    [0xFF5B] = 0.35  -- ｛
+}
+
+local function is_left_punc(n)
+    if left_puncs[n.char] then return true end
+    return false
+end
 
 local puncs = {
     [0x2018] = {0.5, 0.1, 1.0, 1.0}, -- ‘
@@ -53,14 +73,6 @@ local puncs = {
     [0xFF1F] = {0.15, 0.5, 1.0, 0.5},   -- ？
 }
 
-local function is_zhcnpunc_node (n)
-    local n_is_punc = 0
-    if puncs[n.char] then
-	return true
-    end  
-    return false
-end
-
 local function is_zhcnpunc_node_group (n)
     local n_is_punc = 0
     if puncs[n.char] then
@@ -70,7 +82,7 @@ local function is_zhcnpunc_node_group (n)
     local nn_is_punc = 0
     -- 还需要穿越那些非 glyph 结点
     while nn_is_punc == 0 and nn and n_is_punc == 1 do
-	if nn.id == glyph_flag then
+	if nn.id == glyph then
 	    if puncs[nn.char] then nn_is_punc = 1 end
 	    break
 	end
@@ -121,7 +133,7 @@ local function process_punc (head, n, punc_flag, punc_table)
 end
 
 local function compress_punc (head)
-    for n in node_traverse_id (glyph_flag, head) do
+    for n in node_traverse_id (glyph, head) do
 	local n_flag = is_zhcnpunc_node_group (n)
 	if n_flag ~= 0 then
 	    process_punc (head, n, n_flag, puncs)
@@ -134,8 +146,53 @@ function zhspuncs.my_linebreak_filter (head, is_display)
     return head, true
 end
 
+function zhspuncs.align_left_puncs(head)
+    local it = head
+    while it do
+        if it.id == hlist then
+            local e = it.head
+            local neg_kern = nil
+            local hit = nil
+            while e do
+                if e.id == glyph then
+                    if is_left_punc(e) then
+                        hit = e
+                    end
+                    break
+                end
+                e = e.next
+            end
+            if hit ~= nil then
+                -- 文本行整体向左偏移
+                neg_kern = -left_puncs[hit.char] * quad_multiple(hit.font, 1)
+                insert_before(head, hit, new_kern(neg_kern))
+                -- 统计字符个数
+                local w = 1
+                local x = hit
+                while x do
+                    if x.id == glyph then w = w + 1 end
+                    x = x.next
+                end
+                -- 将 neg_kern 分摊出去
+                x = it.head -- 重新遍历
+                av_neg_kern = -neg_kern/w
+                while x do
+                    if x.id == glyph then
+                        insert_after(head, x, new_kern(av_neg_kern))
+                    end
+                    x = x.next
+                end
+            end
+        end
+        it = it.next
+    end
+    return head, done
+end
+
+
 function zhspuncs.opt ()
     tasks.appendaction("processors","after","zhspuncs.my_linebreak_filter")
+    nodes.tasks.appendaction("finalizers", "after", "zhspuncs.align_left_puncs")
 end
 
 fonts.protrusions.vectors['myvector'] = {  
@@ -144,7 +201,7 @@ fonts.protrusions.vectors['myvector'] = {
    [0x2018] = { 0.60, 0 },  -- ‘
    [0x2019] = { 0, 0.60 },  -- ’
    [0x201C] = { 0.50, 0 },  -- “
-   [0x201D] = { 0, 0.50 },  -- ”
+   [0x201D] = { 0, 0.35 },  -- ”
    [0xFF1F] = { 0, 0.60 },  -- ？
    [0x300A] = { 0.60, 0 },  -- 《
    [0x300B] = { 0, 0.60 },  -- 》
