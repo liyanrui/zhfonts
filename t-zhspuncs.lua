@@ -167,18 +167,24 @@ function zhspuncs.align_left_puncs(head)
                 neg_kern = -left_puncs[hit.char] * quad_multiple(hit.font, 1)
                 insert_before(head, hit, new_kern(neg_kern))
                 -- 统计字符个数
-                local w = 1
+                local w = 0
                 local x = hit
                 while x do
                     if x.id == glyph then w = w + 1 end
                     x = x.next
                 end
+                if w == 0 then w = 1 end
                 -- 将 neg_kern 分摊出去
                 x = it.head -- 重新遍历
                 av_neg_kern = -neg_kern/w
+                local i = 0
                 while x do
                     if x.id == glyph then
-                        insert_after(head, x, new_kern(av_neg_kern))
+                        i = i + 1
+                        -- 最后一个字符之后不插入 kern
+                        if i < w then 
+                            insert_after(head, x, new_kern(av_neg_kern))
+                        end
                     end
                     x = x.next
                 end
