@@ -45,11 +45,11 @@ latinfonts.serif.regular    = {name = 'latinmodernromanregular'}
 latinfonts.serif.bold       = {name = 'latinmodernromanbold'}
 latinfonts.serif.italic     = {name = 'latinmodernromanitalic'}
 latinfonts.serif.bolditalic = {name = 'latinmodernromanbolditalic'}
-latinfonts.sans.regular     = {name = 'latinmodernsansnormal'}
+latinfonts.sans.regular     = {name = 'latinmodernsansregular'}
 latinfonts.sans.bold        = {name = 'latinmodernsansbold'}
 latinfonts.sans.italic      = {name = 'latinmodernsansitalic'}
 latinfonts.sans.bolditalic  = {name = 'latinmodernsansbolditalic'}
-latinfonts.mono.regular     = {name = 'latinmodernmononormal'}
+latinfonts.mono.regular     = {name = 'latinmodernmonoregular'}
 latinfonts.mono.bold        = {name = 'latinmodernmonobold'}
 latinfonts.mono.italic      = {name = 'latinmodernmonoitalic'}
 latinfonts.mono.bolditalic  = {name = 'latinmodernmonobolditalic'}
