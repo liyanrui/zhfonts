@@ -36,9 +36,9 @@ cjkfonts.sans.regular     = {name = 'youyuan',  rscale = '1.0'}
 cjkfonts.sans.bold        = {name = 'simhei',   rscale = '1.0'}
 cjkfonts.sans.italic      = {name = 'youyuan',  rscale = '1.0'}
 cjkfonts.sans.bolditalic  = {name = 'simhei',   rscale = '1.0'}
-cjkfonts.mono.regular     = {name = 'fangsong', rscale = '1.0'}
+cjkfonts.mono.regular     = {name = 'simkai', rscale = '1.0'}
 cjkfonts.mono.bold        = {name = 'simkai',   rscale = '1.0'}
-cjkfonts.mono.italic      = {name = 'fangsong', rscale = '1.0'}
+cjkfonts.mono.italic      = {name = 'simkai', rscale = '1.0'}
 cjkfonts.mono.bolditalic  = {name = 'simkai',   rscale = '1.0'}
 
 latinfonts.serif.regular    = {name = 'latinmodernromanregular'}

@@ -7,9 +7,9 @@ local fontdata   = fonthashes.identifiers
 local quaddata   = fonthashes.quads
 local node_count = node.count
 local node_dimensions = node.dimensions
-local node_traverse_id = node.traverse_id
-local insert_before = node.insert_before
-local insert_after = node.insert_after
+local node_traverse_id = node.traverseid
+local insert_before = node.insertbefore
+local insert_after = node.insertafter
 local new_kern = nodes.pool.kern
 local tasks = nodes.tasks
 
