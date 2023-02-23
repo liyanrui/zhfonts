@@ -17,7 +17,7 @@
   cjkunifiedideographsextensionf%
 }
 
-\definefontfeature[zh][default][zhfeatures!]
+\definefontfeature[zh][default][features!]
 
 % Chinese font family
 \starttypescript[serif][zhfonts]
