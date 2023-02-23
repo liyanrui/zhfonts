@@ -21,10 +21,10 @@ end
 local function init_fonts_table()
     local f = {}
     f.chinese = {
-        serif = {regular = {name = "simsun", rscale = "1.0"},
-                 bold = {name = "simsun", rscale = "1.0"},
-                 italic = {name = "simsun", rscale = "1.0"},
-                 bolditalic = {name = "simsun", rscale = "1.0"}},
+        serif = {regular = {name = "nsimsun", rscale = "1.0"},
+                 bold = {name = "nsimsun", rscale = "1.0"},
+                 italic = {name = "nsimsun", rscale = "1.0"},
+                 bolditalic = {name = "nsimsun", rscale = "1.0"}},
         sans = {regular = {name = "simhei", rscale = "1.0"},
                 bold = {name = "simhei", rscale = "1.0"},
                 italic = {name = "simhei", rscale = "1.0"},
