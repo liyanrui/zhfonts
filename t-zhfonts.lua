@@ -8,228 +8,136 @@ local string_split = string.split
 local string_match = string.match
 local string_gsub  = string.gsub
 
-local function string_split_and_strip (str, sep)
-    local strlist = string_split (str, sep)
+local function string_split_and_strip(str, sep)
+    local strlist = string_split(str, sep)
     local result  = {}
-    for i, v in ipairs (strlist) do
-	result[i] = string_strip (v)
+    for i, v in ipairs(strlist) do
+	result[i] = string_strip(v)
     end
     return result
 end
 
-local function init_fonts_table ()
+local function init_fonts_table()
     local f = {}
-    f.serif, f.sans, f.mono = {}, {}, {}
-    for k in pairs (f) do
-	f[k] = {regular = {},bold = {}, italic = {}, bolditalic = {}}
-    end
+    f.chinese = {
+        serif = {regular = {name = "simsun", rscale = "1.0"},
+                 bold = {name = "simsun", rscale = "1.0"},
+                 italic = {name = "simsun", rscale = "1.0"},
+                 bolditalic = {name = "simsun", rscale = "1.0"}},
+        sans = {regular = {name = "simhei", rscale = "1.0"},
+                bold = {name = "simhei", rscale = "1.0"},
+                italic = {name = "simhei", rscale = "1.0"},
+                bolditalic = {name = "simhei", rscale = "1.0"}},
+        mono = {regular = {name = "kaiti", rscale = "1.0"},
+                bold = {name = "kaiti", rscale = "1.0"},
+                italic = {name = "kaiti", rscale = "1.0"},
+                bolditalic = {name = "kaiti", rscale = "1.0"}}
+    }
+    f.latin = {
+        serif = {regular = "lmroman10regular", bold = "lmroman10bold",
+                 italic = "lmroman10italic", bolditalic = "lmroman10bolditalic"},
+        sans = {regular = "lmsans10regular", bold = "lmsans10bold",
+                italic = "lmsans10oblique", bolditalic = "lmsans10boldoblique"},
+        mono = {regular = "lmmono10regular", bold = "lmmonolt10bold",
+                italic = "lmmonolt10oblique", bolditalic = "lmmonolt10boldoblique"}        
+    }
     return f
 end
 
-local cjkfonts, latinfonts = init_fonts_table (), init_fonts_table ()
+fonts.protrusions.vectors['myvector'] = {  
+   [0xFF0c] = { 0, 0.60 },  -- ，
+   [0x3002] = { 0, 0.60 },  -- 。
+   [0x2018] = { 0.60, 0 },  -- ‘
+   [0x2019] = { 0, 0.60 },  -- ’
+   [0x201C] = { 0.50, 0 },  -- “
+   [0x201D] = { 0, 0.35 },  -- ”
+   [0xFF1F] = { 0, 0.60 },  -- ？
+   [0x300A] = { 0.60, 0 },  -- 《
+   [0x300B] = { 0, 0.60 },  -- 》
+   [0xFF08] = { 0.50, 0 },  -- （
+   [0xFF09] = { 0, 0.50 },  -- ）
+   [0x3001] = { 0, 0.50 },  -- 、
+   [0xFF0E] = { 0, 0.50 },  -- ．
+}
+fonts.protrusions.classes['myvector'] = {
+   vector = 'myvector', factor = 1
+}
 
-cjkfonts.serif.regular    = {name = 'simsun',  rscale = '1.0'}
-cjkfonts.serif.bold       = {name = 'simhei',   rscale = '1.0'}
-cjkfonts.serif.italic     = {name = 'simsun',  rscale = '1.0'}
-cjkfonts.serif.bolditalic = {name = 'simhei',   rscale = '1.0'}
-cjkfonts.sans.regular     = {name = 'youyuan',  rscale = '1.0'}
-cjkfonts.sans.bold        = {name = 'simhei',   rscale = '1.0'}
-cjkfonts.sans.italic      = {name = 'youyuan',  rscale = '1.0'}
-cjkfonts.sans.bolditalic  = {name = 'simhei',   rscale = '1.0'}
-cjkfonts.mono.regular     = {name = 'simkai', rscale = '1.0'}
-cjkfonts.mono.bold        = {name = 'simkai',   rscale = '1.0'}
-cjkfonts.mono.italic      = {name = 'simkai', rscale = '1.0'}
-cjkfonts.mono.bolditalic  = {name = 'simkai',   rscale = '1.0'}
+local text_fonts = init_fonts_table()
+local math_typescript = "modern"
+local fontfeatures = "protrusion=myvector"
 
-latinfonts.serif.regular    = {name = 'latinmodernromanregular'}
-latinfonts.serif.bold       = {name = 'latinmodernromanbold'}
-latinfonts.serif.italic     = {name = 'latinmodernromanitalic'}
-latinfonts.serif.bolditalic = {name = 'latinmodernromanbolditalic'}
-latinfonts.sans.regular     = {name = 'latinmodernsansregular'}
-latinfonts.sans.bold        = {name = 'latinmodernsansbold'}
-latinfonts.sans.italic      = {name = 'latinmodernsansitalic'}
-latinfonts.sans.bolditalic  = {name = 'latinmodernsansbolditalic'}
-latinfonts.mono.regular     = {name = 'latinmodernmonoregular'}
-latinfonts.mono.bold        = {name = 'latinmodernmonobold'}
-latinfonts.mono.italic      = {name = 'latinmodernmonoitalic'}
-latinfonts.mono.bolditalic  = {name = 'latinmodernmonobolditalic'}
-
-local math_typeface = {}
-math_typeface.name = 'xits'
-
-local function gen_cjk_typescript (ft)
-    local fb = '\\definefontfallback'
-    local fb_area = '[0x00400-0x2FA1F]'
-    local s1 = nil
-
-    context ('\\starttypescript[serif][zhfonts]')
-    context ('\\setups[font:fallbacks:serif]')
-    s = ft.serif.regular
-    context (fb..'[zhSerif][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
-    s = ft.serif.bold
-    context (fb..'[zhSerifBold][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
-    s = ft.serif.italic
-    context (fb..'[zhSerifItalic][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
-    s = ft.serif.bolditalic
-    context (fb..'[zhSerifBoldItalic][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
-    context ('\\stoptypescript')
-
-    context ('\\starttypescript[sans][zhfonts]')
-    context ('\\setups[font:fallbacks:sans]')
-    s = ft.sans.regular
-    context (fb..'[zhSans][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
-    s = ft.sans.bold
-    context (fb..'[zhSansBold][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
-    s = ft.sans.italic
-    context (fb..'[zhSansItalic][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
-    s = ft.sans.bolditalic
-    context (fb..'[zhSansBoldItalic][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
-    context ('\\stoptypescript')
-
-    context ('\\starttypescript[mono][zhfonts]')
-    context ('\\setups[font:fallbacks:mono]')
-    s = ft.mono.regular
-    context (fb..'[zhMono][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
-    s = ft.mono.bold
-    context (fb..'[zhMonoBold][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
-    s = ft.mono.italic
-    context (fb..'[zhMonoItalic][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
-    s = ft.mono.bolditalic
-    context (fb..'[zhMonoBoldItalic][name:'..s.name..']'..fb_area..'[force=yes,rscale='..s.rscale..']')
-    context ('\\stoptypescript')
-end
-
-local function gen_latin_typescript (ft)
-    local la = '\\definefontsynonym[latin'
-
-    context ('\\starttypescript[serif][zhfonts]')
-    context (la..'Serif][name:' .. ft.serif.regular.name .. ']')
-    context (la..'SerifBold][name:' .. ft.serif.bold.name .. ']')
-    context (la..'SerifItalic][name:' .. ft.serif.italic.name .. ']')
-    context (la..'SerifBoldItalic][name:' .. ft.serif.bolditalic.name .. ']')
-    context ('\\stoptypescript')
-
-    context ('\\starttypescript[sans][zhfonts]')
-    context (la..'Sans][name:' .. ft.sans.regular.name .. ']')
-    context (la..'SansBold][name:' .. ft.sans.bold.name .. ']')
-    context (la..'SansItalic][name:' .. ft.sans.italic.name .. ']')
-    context (la..'SansBoldItalic][name:' .. ft.sans.bolditalic.name .. ']')
-    context ('\\stoptypescript')
-
-    context ('\\starttypescript[mono][zhfonts]')
-    context (la..'Mono][name:' .. ft.mono.regular.name .. ']')
-    context (la..'MonoBold][name:' .. ft.mono.bold.name .. ']')
-    context (la..'MonoItalic][name:' .. ft.mono.italic.name .. ']')
-    context (la..'MonoBoldItalic][name:' .. ft.mono.bolditalic.name .. ']')
-    context ('\\stoptypescript')
-end
-
-local function gen_fallback_typescript ()
-    context ('\\starttypescript[serif][zhfonts]')
-    context ('\\setups[font:fallbacks:serif]')
-    context ('\\definefontsynonym[zhSeriffallback][latinSerif][fallbacks=zhSerif]')
-    context ('\\definefontsynonym[Serif][zhSeriffallback]')    
-    context ('\\definefontsynonym[zhSerifBoldfallback][latinSerifBold][fallbacks=zhSerifBold]')
-    context ('\\definefontsynonym[SerifBold][zhSerifBoldfallback]')   
-    context ('\\definefontsynonym[zhSerifItalicfallback][latinSerifItalic][fallbacks=zhSerifItalic]')
-    context ('\\definefontsynonym[SerifItalic][zhSerifItalicfallback]')
-    context ('\\definefontsynonym[zhSerifBoldItalicfallback][latinSerifBoldItalic][fallbacks=zhSerifBoldItalic]')
-    context ('\\definefontsynonym[SerifBoldItalic][zhSerifBoldItalicfallback]')
-    context ('\\stoptypescript')
-
-    context ('\\starttypescript[sans][zhfonts]')
-    context ('\\setups[font:fallbacks:sans]')
-    context ('\\definefontsynonym[zhSansfallback][latinSans][fallbacks=zhSans]')
-    context ('\\definefontsynonym[Sans][zhSansfallback]')    
-    context ('\\definefontsynonym[zhSansBoldfallback][latinSansBold][fallbacks=zhSansBold]')
-    context ('\\definefontsynonym[SansBold][zhSansBoldfallback]')   
-    context ('\\definefontsynonym[zhSansItalicfallback][latinSansItalic][fallbacks=zhSansItalic]')
-    context ('\\definefontsynonym[SansItalic][zhSansItalicfallback]')
-    context ('\\definefontsynonym[zhSansBoldItalicfallback][latinSansBoldItalic][fallbacks=zhSansBoldItalic]')
-    context ('\\definefontsynonym[SansBoldItalic][zhSansBoldItalicfallback]')
-    context ('\\stoptypescript')
-
-    context ('\\starttypescript[mono][zhfonts]')
-    context ('\\setups[font:fallbacks:mono]')
-    context ('\\definefontsynonym[zhMonofallback][latinMono][fallbacks=zhMono]')
-    context ('\\definefontsynonym[Mono][zhMonofallback]')    
-    context ('\\definefontsynonym[zhMonoBoldfallback][latinMonoBold][fallbacks=zhMonoBold]')
-    context ('\\definefontsynonym[MonoBold][zhMonoBoldfallback]')   
-    context ('\\definefontsynonym[zhMonoItalicfallback][latinMonoItalic][fallbacks=zhMonoItalic]')
-    context ('\\definefontsynonym[MonoItalic][zhMonoItalicfallback]')
-    context ('\\definefontsynonym[zhMonoBoldItalicfallback][latinMonoBoldItalic][fallbacks=zhMonoBoldItalic]')
-    context ('\\definefontsynonym[MonoBoldItalic][zhMonoBoldItalicfallback]')
-    context ('\\stoptypescript')
-end
-
-local function gen_typeface ()
-    context ('\\starttypescript[zhfonts]')
-    context ('\\definetypeface[zhfonts][rm][serif][zhfonts][default][features=zh]')
-    context ('\\definetypeface[zhfonts][ss][sans][zhfonts][default][features=zh]')
-    context ('\\definetypeface[zhfonts][tt][mono][zhfonts][default]')
-    if math_typeface then
-	context ('\\definetypeface[zhfonts][mm][math]['.. math_typeface.name .. '][default]')
+function zhfonts.gen_typescript()
+    local path = resolvers.findfile("typescript.template")
+    local template = assert(io.open(path, "r"))
+    local typescript = template:read("*all")
+    local rep, k = {}, 1
+    local style = {"serif", "sans", "mono"}
+    local type = {"regular", "bold", "italic", "bolditalic"}
+    -- substitute chinese and latin fonts.
+    for _, a in pairs(style) do
+        for _, b in pairs(type) do
+            local fontname = a .. b
+            rep[k] = {"zh" .. fontname .. "!", "name:" .. text_fonts.chinese[a][b].name}
+            rep[k + 1] = {"zh" .. fontname .. "@rscale!", text_fonts.chinese[a][b].rscale}
+            rep[k + 2] = {"latin" .. fontname .. "!", "name:" .. text_fonts.latin[a][b]}
+            k = k + 3
+        end
     end
-    context ('\\stoptypescript')
+    -- substitute math fonts.
+    rep[k] = {"mathtypescriptname!", math_typescript}
+    rep[k + 1] = {"zhfeatures!", fontfeatures}
+    local real_typescript = lpeg.replacer(rep):match(typescript)
+    context(real_typescript)
+    template:close()
+    return real_typescript
 end
 
-function zhfonts.gen_typescript ()
-    gen_cjk_typescript (cjkfonts)
-    gen_latin_typescript (latinfonts)
-    gen_fallback_typescript ()
-    gen_typeface ()
-end
-
-local function setup_cjkfonts (meta, fontlist)
+local function setup_chinesefonts(meta, fontlist)
     local f, g = nil, nil
-    for i, v in ipairs (fontlist) do
-	f = string_split_and_strip (v, '=')
-	g = string_split_and_strip (f[2], '@')
-	if g[1] ~= '' then cjkfonts[meta][f[1]].name = g[1] end
-	if g[2] then cjkfonts[meta][f[1]].rscale = g[2] end
+    for i, v in ipairs(fontlist) do
+	f = string_split_and_strip(v, "=")
+	g = string_split_and_strip(f[2], "@")
+	if g[1] ~= "" then text_fonts.chinese[meta][f[1]].name = g[1] end
+	if g[2] then text_fonts.chinese[meta][f[1]].rscale = g[2] end
     end
 end
-
-local function setup_latinfonts (meta, fontlist)
+local function setup_latinfonts(meta, fontlist)
     local f, g = nil, nil
-    for i, v in ipairs (fontlist) do
-	f = string_split_and_strip (v, '=')
-	latinfonts[meta][f[1]].name = f[2]
+    for i, v in ipairs(fontlist) do
+	f = string_split_and_strip(v, "=")
+	text_fonts.latin[meta][f[1]] = f[2]
     end   
 end
-
-local function setup_math_typeface (name)
-    math_typeface.name = string_strip (name)
+local function setup_math_typescript(name)
+    math_typescript = string_strip(name)
 end
 
-local fontfeatures = "mode=node,protrusion=myvector,liga=yes"
 local function setup_fontfeatures (s)
-    fontfeatures = fontfeatures .. s
+    fontfeatures = fontfeatures .. "," .. s
 end
-
-function zhfonts.setup (metainfo, fontinfo)
-    local m = string_split_and_strip (metainfo, ',')
-    local f = string_split_and_strip (fontinfo, ',')
-    if #m == 1 and m[1] == 'feature' then setup_fontfeatures (fontinfo) end
-    if #m == 1 and cjkfonts[m[1]] then setup_cjkfonts (m[1], f)  end
-    if #m == 1 and m[1] == 'math' then setup_math_typeface (f[1]) end
+function zhfonts.setup(metainfo, fontinfo)
+    local m = string_split_and_strip(metainfo, ",")
+    local f = string_split_and_strip(fontinfo, ",")
+    if #m == 1 and m[1] == "features" then setup_fontfeatures(fontinfo) end
+    if #m == 1 and text_fonts.chinese[m[1]] then setup_chinesefonts(m[1], f)  end
+    if #m == 1 and m[1] == "math" then setup_math_typescript(f[1]) end
     if #m == 2 then
-	if m[1] == 'latin' and latinfonts[m[2]] then setup_latinfonts (m[2], f) end
-	if m[2] == 'latin' and latinfonts[m[1]] then setup_latinfonts (m[1], f) end	
+	if m[1] == "latin" and text_fonts.latin[m[2]] then setup_latinfonts(m[2], f) end
+	if m[2] == "latin" and text_fonts.latin[m[1]] then setup_latinfonts(m[1], f) end	
     end
 end
 
-function zhfonts.main (param)
-    context ('\\setscript[hanzi]')
-    zhspuncs.opt ()
-    local arg_list = string_split_and_strip (param, ',')
+function zhfonts.main(param)
+    context("\\setscript[hanzi]")
+    zhspuncs.opt()
+    local arg_list = string_split_and_strip(param, ",")
     if arg_list[1] ~= "none" and arg_list[2] ~= "none" then
-	context ('\\definefontfeature[zh][default][' .. fontfeatures .. ']')
-	context ('\\setupalign[hanging, hz]')
-        zhfonts.gen_typescript ()
+        zhfonts.gen_typescript()
         if arg_list[1] ~= "hack" and arg_list[2] ~= "hack" then
-	    context ('\\usetypescript[zhfonts]')
-            context ('\\setupbodyfont[zhfonts, ' .. param .. ']') 
+            context("\\usetypescript[zhfonts]")
+            context("\\setupbodyfont[zhfonts, " .. param .. "]") 
         end
+        context("\\setupalign[hanging, hz]")
     end
 end

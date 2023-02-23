@@ -1,0 +1,172 @@
+\def\chinesechars{%
+  generalpunctuation,%
+  halfwidthandfullwidthforms,%
+  cjkcompatibility,%
+  cjkcompatibilityforms,%
+  cjkcompatibilityideographs,%
+  cjkcompatibilityideographssupplement,%
+  cjkradicalssupplement,%
+  cjkstrokes,%
+  cjksymbolsandpunctuation,%
+  cjkunifiedideographs,%
+  cjkunifiedideographsextensiona,%
+  cjkunifiedideographsextensionb,%
+  cjkunifiedideographsextensionc,%
+  cjkunifiedideographsextensiond,%
+  cjkunifiedideographsextensione,%
+  cjkunifiedideographsextensionf%
+}
+
+\definefontfeature[zh][default][zhfeatures!]
+
+% Chinese font family
+\starttypescript[serif][zhfonts]
+%\setups[font:fallbacks:serif]
+\definefontfallback
+  [zhSerif]
+  [zhserifregular!]
+  [\chinesechars]
+  [force=yes,rscale=zhserifregular@rscale!]
+\definefontfallback
+  [zhSerifBold]
+  [zhserifbold!]
+  [\chinesechars]
+  [force=yes,rscale=zhserifbold@rscale!]
+\definefontfallback
+  [zhSerifItalic]
+  [zhserifitalic!]
+  [\chinesechars]
+  [force=yes,rscale=zhserifitalic@rscale!]
+\definefontfallback
+  [zhSerifBoldItalic]
+  [zhserifbolditalic!]
+  [\chinesechars]
+  [force=yes,rscale=zhserifbolditalic@rscale!]
+\stoptypescript
+\starttypescript[sans][zhfonts]
+\definefontfallback
+  [zhSans]
+  [zhsansregular!]
+  [\chinesechars]
+  [force=yes,rscale=zhsansregular@rscale!]
+\definefontfallback
+  [zhSansBold]
+  [zhsansbold!]
+  [\chinesechars]
+  [force=yes,rscale=zhsansbold@rscale!]
+\definefontfallback
+  [zhSansItalic]
+  [zhsansitalic!]
+  [\chinesechars]
+  [force=yes,rscale=zhsansitalic@rscale!]
+\definefontfallback
+  [zhSansBoldItalic]
+  [zhsansbolditalic!]
+  [\chinesechars]
+  [force=yes,rscale=zhsansbolditalic@rscale!]
+\stoptypescript
+\starttypescript[mono][zhfonts]
+\definefontfallback
+  [zhMono]
+  [zhmonoregular!]
+  [\chinesechars]
+  [force=yes,rscale=zhmonoregular@rscale!]
+\definefontfallback
+  [zhMonoBold]
+  [zhmonobold!]
+  [\chinesechars]
+  [force=yes,rscale=zhmonobold@rscale!]
+\definefontfallback
+  [zhMonoItalic]
+  [zhmonoitalic!]
+  [\chinesechars]
+  [force=yes,rscale=zhmonoitalic@rscale!]
+\definefontfallback
+  [zhMonoBoldItalic]
+  [zhmonobolditalic!]
+  [\chinesechars]
+  [force=yes,rscale=zhmonobolditalic@rscale!]
+\stoptypescript
+
+% Latin font family
+\starttypescript[serif][zhfonts]
+\definefontsynonym[latinSerif][latinserifregular!]
+\definefontsynonym[latinSerifBold][latinserifbold!]
+\definefontsynonym[latinSerifItalic][latinserifitalic!]
+\definefontsynonym[latinSerifBoldItalic][latinserifbolditalic!]
+\stoptypescript
+\starttypescript[sans][zhfonts]
+\definefontsynonym[latinSans][latinsansregular!]
+\definefontsynonym[latinSansBold][latinsansbold!]
+\definefontsynonym[latinSansItalic][latinsansitalic!]
+\definefontsynonym[latinSansBoldItalic][latinsansbolditalic!]
+\stoptypescript
+\starttypescript[mono][zhfonts]
+\definefontsynonym[latinMono][latinmonoregular!]
+\definefontsynonym[latinMonoBold][latinmonobold!]
+\definefontsynonym[latinMonoItalic][latinmonoitalic!]
+\definefontsynonym[latinMonoBoldItalic][latinmonobolditalic!]
+\stoptypescript
+
+% Chinese fonts + Latin fonts
+\starttypescript[serif][zhfonts]
+\definefontsynonym
+  [zhSeriffallback][latinSerif][fallbacks=zhSerif]
+\definefontsynonym
+  [Serif][zhSeriffallback]
+\definefontsynonym
+  [zhSerifBoldfallback][latinSerifBold][fallbacks=zhSerifBold]
+\definefontsynonym
+  [SerifBold][zhSerifBoldfallback]   
+\definefontsynonym
+  [zhSerifItalicfallback][latinSerifItalic][fallbacks=zhSerifItalic]
+\definefontsynonym
+  [SerifItalic][zhSerifItalicfallback]
+\definefontsynonym
+  [zhSerifBoldItalicfallback][latinSerifBoldItalic][fallbacks=zhSerifBoldItalic]
+\definefontsynonym
+  [SerifBoldItalic][zhSerifBoldItalicfallback]
+\stoptypescript
+\starttypescript[sans][zhfonts]
+\definefontsynonym
+  [zhSansfallback][latinSans][fallbacks=zhSans]
+\definefontsynonym
+  [Sans][zhSansfallback]   
+\definefontsynonym
+  [zhSansBoldfallback][latinSansBold][fallbacks=zhSansBold]
+\definefontsynonym
+  [SansBold][zhSansBoldfallback] 
+\definefontsynonym
+  [zhSansItalicfallback][latinSansItalic][fallbacks=zhSansItalic]
+\definefontsynonym
+  [SansItalic][zhSansItalicfallback]
+\definefontsynonym
+  [zhSansBoldItalicfallback][latinSansBoldItalic][fallbacks=zhSansBoldItalic]
+\definefontsynonym
+  [SansBoldItalic][zhSansBoldItalicfallback]
+\stoptypescript
+\starttypescript[mono][zhfonts]
+\definefontsynonym
+  [zhMonofallback][latinMono][fallbacks=zhMono]
+\definefontsynonym
+  [Mono][zhMonofallback]   
+\definefontsynonym
+  [zhMonoBoldfallback][latinMonoBold][fallbacks=zhMonoBold]
+\definefontsynonym
+  [MonoBold][zhMonoBoldfallback]  
+\definefontsynonym
+  [zhMonoItalicfallback][latinMonoItalic][fallbacks=zhMonoItalic]
+\definefontsynonym
+  [MonoItalic][zhMonoItalicfallback]
+\definefontsynonym
+  [zhMonoBoldItalicfallback][latinMonoBoldItalic][fallbacks=zhMonoBoldItalic]
+\definefontsynonym
+  [MonoBoldItalic][zhMonoBoldItalicfallback]
+\stoptypescript
+
+\starttypescript[zhfonts]
+\definetypeface[zhfonts][rm][serif][zhfonts][default][features=zh]
+\definetypeface[zhfonts][ss][sans][zhfonts][default][features=zh]
+\definetypeface[zhfonts][tt][mono][zhfonts][default][features=default]
+\definetypeface[zhfonts][mm][math][mathtypescriptname!][default][features=default]
+\stoptypescript
