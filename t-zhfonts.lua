@@ -142,7 +142,6 @@ function zhfonts.setup(metainfo, fontinfo)
 end
 
 function zhfonts.main(param)
-    context("\\setscript[hanzi]")
     zhspuncs.opt()
     local arg_list = string_split_and_strip(param, ",")
     if arg_list[1] ~= "none" and arg_list[2] ~= "none" then
@@ -150,6 +149,7 @@ function zhfonts.main(param)
         if arg_list[1] ~= "hack" and arg_list[2] ~= "hack" then
             context("\\usetypescript[zhfonts]")
             context("\\setupbodyfont[zhfonts, " .. param .. "]")
+            context("\\setscript[hanzi]")
             context("\\setupalign[hanging, hz]")
         end
     end
