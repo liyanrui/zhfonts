@@ -17,7 +17,7 @@ Put the module (the directory named zhfonts) into your ConTeXt directory, for ex
 /home/garfileo/opt/context/tex/texmf-local/tex/context/third
 ```
 
-Then excute the following command to enable the context program to find the module files.
+Then excute the following command to enable the context program to find the module files,
 
 ```console
 $ context --generate
@@ -128,7 +128,7 @@ The following example shows the default serif bold font (\rm\bf) and serif bold 
 
 ![Test result 3](test/test-3.png)
 
-The following example shows how to change the serif fonts totally.
+The following example shows how to change the serif fonts totally,
 
 ```TeX
 \usemodule[zhfonts]
