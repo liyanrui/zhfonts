@@ -153,7 +153,7 @@ Analogously, "\setupzhfonts" can be used to change the sans (\ss) fonts and the 
 ```TeX
 \setupzhfonts
   [latin,serif|sans|mono]
-  [regular=...>,
+  [regular=...,
    bold=...,
    italic=...,
    bolditalic=...]
