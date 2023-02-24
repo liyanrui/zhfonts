@@ -1,6 +1,6 @@
 # Introduction
 
-zhfonts is a module for Chinese typesetting in [ConTeXt](https://wiki.contextgarden.net/Installation)(MkIV or LMTX). It can define the typefaces for Chinese fonts and support the tuning of punctuations. The latter is mainly implemented by using two callback which is offered by ConTeXt MkIV or LMTX:
+zhfonts is a module for Chinese typesetting in [ConTeXt](https://wiki.contextgarden.net/Installation) (MkIV or LMTX). It can be used to define the typefaces for Chinese fonts and to support the tuning of punctuations. The latter is mainly implemented by using two callback which is offered by ConTeXt MkIV or LMTX:
 
 ```lua
 tasks.appendaction("processors","after", ...)
@@ -23,13 +23,13 @@ Then excute the following command to enable the context program to find the modu
 $ context --generate
 ```
 
-You can test whether the context program find the module files, for example t-zhfonts.lua by the command:
+You can test whether the context program find the module files for example "t-zhfonts.lua" by the command:
 
 ```console
 $ mtxrun --script base --search t-zhfonts.lua
 ```
 
-I get the result in my computer:
+In my computer, the result is
 
 ```
 /home/garfileo/opt/context-lmtx/tex/texmf-local/tex/context/third/zhfonts/t-zhfonts.lua
@@ -64,6 +64,8 @@ simsunnormal     simsun       simsun     simsun.ttc   1
 simsunregular    simsun       simsun     simsun.ttc   1
 ```
 
+zhfonts module uses the information of the column "fontname" to specify one font.
+
 # Basic usage
 
 If the work above done, you can try the following example to test the module and the Chinese fonts works normally.
@@ -83,7 +85,6 @@ If the work above done, you can try the following example to test the module and
 {\ss\getbuffer[foo]}
 {\tt\getbuffer[foo]}
 \blank
-
 测试数学公式：
 
 \startformula
@@ -92,9 +93,72 @@ If the work above done, you can try the following example to test the module and
 \stoptext
 ```
 
-If you can get the result which looks like the following figure, all is well.
+If the result looks like the following figure, all is well.
 
 ![Test 1](test/test-1.png)
 
+# \setupzhfonts
+
+The command `\setupzhfonts` which can be used to set up the bodyfonts (text fonts) and to change default fonts in the module.
+
+For example, set up sans font specified size as the text bodyfont:
+
+```TeX
+\usemodule[zhfonts][style=ss,size=14pt]
+\starttext
+我能吞下玻璃而不伤身体。I can eat glass, it does not hurt me.
+\stoptext
+```
+
+![Test 2](test/test-2.png)
+
+The following example shows the default serif bold font (\rm\bf) and serif bold italic font (\rm\it) are sbustituded by the [NotoSerifCJK-Bold.ttc](https://github.com/notofonts/noto-cjk/tree/main/Serif/OTC) (It need be installed by yourself refering to the above installation for simsun.ttc, simhei.ttf, etc.).
+
+```TeX
+\usemodule[zhfonts]
+\setupzhfonts
+  [serif]
+  [bold=notoserifcjkscbold,
+   bolditalic=notoserifcjkscbold]
+\starttext
+\bf 我能吞下玻璃而不伤身体。I can eat glass, it does not hurt me.\par
+\bi 我能吞下玻璃而不伤身体。I can eat glass, it does not hurt me.
+\stoptext
+```
+
+![Test 3](test/test-3.png)
+
+The following example shows how to change the serif fonts totally.
+
+```TeX
+\usemodule[zhfonts]
+\setupzhfonts
+  [serif]
+  [regular=notoserifcjkscregular,
+   bold=notoserifcjkscbold,
+   italic=notoserifcjkscregular,
+   bolditalic=notoserifcjkscbold]
+\starttext
+我能吞下玻璃而不伤身体。I can eat glass, it does not hurt me.\par
+\bf 我能吞下玻璃而不伤身体。I can eat glass, it does not hurt me.\par
+\it 我能吞下玻璃而不伤身体。I can eat glass, it does not hurt me.\par
+\bi 我能吞下玻璃而不伤身体。I can eat glass, it does not hurt me.
+\stoptext
+```
+![Test 4](test/test-4.png)
+
+
+Analogously, "\setupzhfonts" can be used to change the sans (\ss) fonts and the mono (\tt) fonts.
+
+For math fonts, zhfonts module use the "modern" typescript defined by ConTeXt team. If you want to use other math fonts, please refer to https://wiki.contextgarden.net/Math_fonts and use some typescript name as the argument of "\setupzhfonts". For example to use the xits font as math font, you can do
+
+```TeX
+\usemodule[zhfonts]
+\setupzhfonts[math][xits]
+\starttext
+数学公式 $\sum_{i=1}^n α_i x^i$
+\stoptext
+```
+![Test 5](test/test-5.png)
 
 # To be continued.
