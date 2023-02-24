@@ -95,7 +95,7 @@ If the work above done, you can try the following example to test the module and
 
 If the result looks like the following figure, all is well.
 
-![Test 1](test/test-1.png)
+![Test result 1](test/test-1.png)
 
 # \setupzhfonts
 
@@ -110,7 +110,7 @@ For example, set up sans font specified size as the text bodyfont:
 \stoptext
 ```
 
-![Test 2](test/test-2.png)
+![Test result 2](test/test-2.png)
 
 The following example shows the default serif bold font (\rm\bf) and serif bold italic font (\rm\it) are sbustituded by the [NotoSerifCJK-Bold.ttc](https://github.com/notofonts/noto-cjk/tree/main/Serif/OTC) (It need be installed by yourself refering to the above installation for simsun.ttc, simhei.ttf, etc.).
 
@@ -126,7 +126,7 @@ The following example shows the default serif bold font (\rm\bf) and serif bold 
 \stoptext
 ```
 
-![Test 3](test/test-3.png)
+![Test result 3](test/test-3.png)
 
 The following example shows how to change the serif fonts totally.
 
@@ -145,7 +145,7 @@ The following example shows how to change the serif fonts totally.
 \bi 我能吞下玻璃而不伤身体。I can eat glass, it does not hurt me.
 \stoptext
 ```
-![Test 4](test/test-4.png)
+![Test result 4](test/test-4.png)
 
 
 Analogously, "\setupzhfonts" can be used to change the sans (\ss) fonts and the mono (\tt) fonts. For changing Latin fonts, "\setupzhfonts" command format is
@@ -168,7 +168,7 @@ For math fonts, zhfonts module use the "modern" typescript defined by ConTeXt te
 数学公式 $\sum_{i=1}^n α_i x^i$
 \stoptext
 ```
-![Test 5](test/test-5.png)
+![Test result 5](test/test-5.png)
 
 To add some feature for fonts, particularly Latin fonts, just need
 
@@ -187,7 +187,7 @@ For example to add the features "onum",
 \showotfcomposition{lmroman10regular*zh at 16pt}{}{It's 2023!}
 \stoptext
 ```
-![Test 6](test/test-6.png)
+![Test result 6](test/test-6.png)
 
 
 To be continued.
