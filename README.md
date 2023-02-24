@@ -42,10 +42,15 @@ $ context --generate
 $ mtxrun --script fonts --reload --force
 ```
 
-The following command can be used to check whether the font exists.
+This command can be used to check whether the font exists:
 
 ```console
 $ mtxrun --script fonts --list --all --pattern=sim*
+```
+
+The result should be
+
+```plain
 identifier       familyname   fontname   filename     subfont   instances
 
 nsimsun          nsimsun      nsimsun    simsun.ttc   2
