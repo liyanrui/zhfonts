@@ -46,7 +46,7 @@ The following command can be used to check whether the font exists.
 
 ```console
 $ mtxrun --script fonts --list --all --pattern=sim*
-identifier       familyname   fontname   filename     subfont
+identifier       familyname   fontname   filename     subfont   instances
 
 nsimsun          nsimsun      nsimsun    simsun.ttc   2
 nsimsunnormal    nsimsun      nsimsun    simsun.ttc   2
