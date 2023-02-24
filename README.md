@@ -9,7 +9,7 @@ tasks.appendaction("finalizers", "after", ...)
 
 Therefore I could not guarantee this module works always unless that callback is alive.
 
-# Installition
+# Installation
 
 Put the module (the directory named zhfonts) into your ConTeXt directory, for example mine is "/home/garfileo/opt/context" in a Linux system (For windows, it can be "c:\context"). I put the module into the directory
 
