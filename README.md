@@ -32,10 +32,10 @@ $ mtxrun --script base --search t-zhfonts.lua
 In my computer, the result is
 
 ```
-/home/garfileo/opt/context-lmtx/tex/texmf-local/tex/context/third/zhfonts/t-zhfonts.lua
+/home/garfileo/opt/context/tex/texmf-local/tex/context/third/zhfonts/t-zhfonts.lua
 ```
 
-In addition, zhfonts module needs three Chinese fonts, simsun.ttc, simhei.ttf and simkai.ttf, which can be obtained from your or your friends' MS Windows system (C:\Windows\Fonts). These fonts can be put into the directory `"YOUR ConTeXt diretory"/tex/texmf-local/fonts/truetype/msfonts` then excute
+In addition, zhfonts module needs three Chinese fonts, **simsun.ttc**, **simhei.ttf** and **simkai.ttf**, which can be obtained from your or your friends' MS Windows system (C:\Windows\Fonts). These fonts can be put into the directory `"YOUR ConTeXt diretory"/tex/texmf-local/fonts/truetype/msfonts` then excute
 
 ```console
 $ context --generate
@@ -148,7 +148,16 @@ The following example shows how to change the serif fonts totally.
 ![Test 4](test/test-4.png)
 
 
-Analogously, "\setupzhfonts" can be used to change the sans (\ss) fonts and the mono (\tt) fonts.
+Analogously, "\setupzhfonts" can be used to change the sans (\ss) fonts and the mono (\tt) fonts. For changing Latin fonts, "\setupzhfonts" command format is
+
+```TeX
+\setupzhfonts
+  [latin,serif|sans|mono]
+  [regular=...>,
+   bold=...,
+   italic=...,
+   bolditalic=...]
+```
 
 For math fonts, zhfonts module use the "modern" typescript defined by ConTeXt team. If you want to use other math fonts, please refer to https://wiki.contextgarden.net/Math_fonts and use some typescript name as the argument of "\setupzhfonts". For example to use the xits font as math font, you can do
 
@@ -161,4 +170,24 @@ For math fonts, zhfonts module use the "modern" typescript defined by ConTeXt te
 ```
 ![Test 5](test/test-5.png)
 
-# To be continued.
+To add some feature for fonts, particularly Latin fonts, just do
+
+```TeX
+\setupzhfnots[features][features you want]
+```
+
+For example to add the features "onum", 
+
+```TeX
+\usemodule[zhfonts]
+\setupzhfonts[features][onum=yes]
+
+\starttext
+\inframed{\switchtobodyfont[16pt]字体特性：It's 2023!}
+\showotfcomposition{lmroman10regular*zh at 16pt}{}{It's 2023!}
+\stoptext
+```
+![Test 6](test/test-6.png)
+
+
+To be continued.
