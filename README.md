@@ -9,7 +9,7 @@ tasks.appendaction("finalizers", "after", ...)
 
 Therefore I could not guarantee this module works always unless that callback is alive.
 
-* Basic usage
+* Installition
 
 Put the module (the directory named zhfonts) into your ConTeXt directory, for example mine is "/home/garfileo/opt/context" in a Linux system (For windows, it can be "c:\context"). I put the module into the directory
 
@@ -23,12 +23,43 @@ Then excute the following command to enable the context program to find the modu
 $ context --generate
 ```
 
-Zhfonts module needs three Chinese fonts, simsun.ttc, simhei.ttf and simkai.ttf, which can be obtained from your or your friends' MS Windows system (C:\Windows\Fonts). These fonts can be put into the directory `"YOUR ConTeXt diretory"/tex/texmf-local/fonts/truetype/msfonts` then excute
+You can test whether the context program find the module files, for example t-zhfonts.lua by the command:
+
+```console
+$ mtxrun --script base --search t-zhfonts.lua
+```
+
+I get the result in my computer:
+
+```
+/home/garfileo/opt/context-lmtx/tex/texmf-local/tex/context/third/zhfonts/t-zhfonts.lua
+```
+
+In addition, zhfonts module needs three Chinese fonts, simsun.ttc, simhei.ttf and simkai.ttf, which can be obtained from your or your friends' MS Windows system (C:\Windows\Fonts). These fonts can be put into the directory `"YOUR ConTeXt diretory"/tex/texmf-local/fonts/truetype/msfonts` then excute
 
 ```console
 $ context --generate
 $ mtxrun --script fonts --reload --force
 ```
+
+The following command can be used to check whether the font exists.
+
+```console
+$ mtxrun --script fonts --list --all --pattern=sim*
+identifier       familyname   fontname   filename     subfont
+
+nsimsun          nsimsun      nsimsun    simsun.ttc   2
+nsimsunnormal    nsimsun      nsimsun    simsun.ttc   2
+nsimsunregular   nsimsun      nsimsun    simsun.ttc   2
+simhei           simhei       simhei     simhei.ttf
+simheinormal     simhei       simhei     simhei.ttf
+simheiregular    simhei       simhei     simhei.ttf
+simsun           simsun       simsun     simsun.ttc   1
+simsunnormal     simsun       simsun     simsun.ttc   1
+simsunregular    simsun       simsun     simsun.ttc   1
+```
+
+# Basic usage
 
 If the work above done, you can try the following example to test the module and the Chinese fonts works normally.
 
