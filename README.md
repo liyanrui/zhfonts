@@ -170,7 +170,7 @@ For math fonts, zhfonts module use the "modern" typescript defined by ConTeXt te
 ```
 ![Test 5](test/test-5.png)
 
-To add some feature for fonts, particularly Latin fonts, just do
+To add some feature for fonts, particularly Latin fonts, just need
 
 ```TeX
 \setupzhfnots[features][features you want]
