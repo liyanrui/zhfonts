@@ -13,10 +13,7 @@
 \startmodule[zhfonts]
 \unprotect
 \setupmodule[style=rm,size=11pt]
-
-\ctxloadluafile{t-zhfonts} % this command can not work in latest beta,
-                            % so i have to use \startluacode ... \stopluacode.
-
+\ctxloadluafile{t-zhfonts}
 \edef\@@@@??style{\currentmoduleparameter{style}}
 \edef\@@@@??size{\currentmoduleparameter{size}}
 
@@ -24,16 +21,13 @@
 \def\dosetupzhfonts[#1][#2]{%
         \ctxlua{moduledata.zhfonts.setup ('#1', '#2')}
 }
-
 \def\zhfonts[#1]{\ctxlua{moduledata.zhfonts.main ('#1')}}
 
 % %D 预先设置文档主字体类型与尺寸，防止 ConTexT 将 12pt 作为 1em 的绝对长度
 \setupbodyfont[\@@@@??style,\@@@@??size]
 \definebodyfontenvironment[18pt] % 阻止警告
 \definebodyfontenvironment[24pt] % 阻止警告
-
 \appendtoks \zhfonts[\@@@@??style, \@@@@??size] \to \everystarttext
-
 \protect
 \stopmodule
 \endinput
