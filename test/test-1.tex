@@ -1,0 +1,21 @@
+\usemodule[zhfonts]
+
+\starttext
+\startbuffer[foo]
+\tf 我能吞下玻璃而不伤身体。I can eat glass, it does not hurt me.\par
+\bf 我能吞下玻璃而不伤身体。I can eat glass, it does not hurt me.\par
+\it 我能吞下玻璃而不伤身体。I can eat glass, it does not hurt me.\par
+\bi 我能吞下玻璃而不伤身体。I can eat glass, it does not hurt me.\par
+\stopbuffer
+
+{\rm\getbuffer[foo]}
+{\ss\getbuffer[foo]}
+{\tt\getbuffer[foo]}
+\blank
+
+测试数学公式：
+
+\startformula
+\int_{a}^{b} x^2 \,dx
+\stopformula
+\stoptext
