@@ -68,7 +68,7 @@ zhfonts module uses the information of the column "fontname" to specify one font
 
 # Basic usage
 
-If the work above done, you can try the following example to test the module and the Chinese fonts works normally.
+Try the following example to test whether the module and the Chinese fonts works normally.
 
 ```TeX
 \usemodule[zhfonts]
