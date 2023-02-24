@@ -67,6 +67,8 @@ fonts.protrusions.classes["myvector"] = {
 
 local text_fonts = init_fonts_table()
 local math_typescript = "modern"
+-- It would break the features of latin fonts.
+-- local fontfeatures = "mode=node,script=hang,lang=zhs,protrusion=myvector"
 local fontfeatures = "protrusion=myvector"
 
 function zhfonts.gen_typescript()

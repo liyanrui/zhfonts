@@ -113,9 +113,9 @@ end
 
 local function process_punc (head, n, punc_flag, punc_table)
     local desc = fontdata[n.font].descriptions[n.char]
-    if not desc then return end
+    if not desc or not desc.boundingbox then return end
+    
     local quad = quad_multiple (n.font, 1)
-
     local l_space = desc.boundingbox[1] / desc.width
     local r_space = (desc.width - desc.boundingbox[3]) / desc.width
     local l_kern, r_kern = 0.0, 0.0
