@@ -111,55 +111,79 @@
 % Chinese fonts + Latin fonts
 \starttypescript[serif][zhfonts]
 \definefontsynonym
-  [zhSeriffallback][latinSerif][fallbacks=zhSerif]
+  [zhSeriffallback]
+  [latinSerif]
+  [fallbacks=zhSerif]
 \definefontsynonym
   [Serif][zhSeriffallback]
 \definefontsynonym
-  [zhSerifBoldfallback][latinSerifBold][fallbacks=zhSerifBold]
+  [zhSerifBoldfallback]
+  [latinSerifBold]
+  [fallbacks=zhSerifBold]
 \definefontsynonym
   [SerifBold][zhSerifBoldfallback]   
 \definefontsynonym
-  [zhSerifItalicfallback][latinSerifItalic][fallbacks=zhSerifItalic]
+  [zhSerifItalicfallback]
+  [latinSerifItalic]
+  [fallbacks=zhSerifItalic]
 \definefontsynonym
   [SerifItalic][zhSerifItalicfallback]
 \definefontsynonym
-  [zhSerifBoldItalicfallback][latinSerifBoldItalic][fallbacks=zhSerifBoldItalic]
+  [zhSerifBoldItalicfallback]
+  [latinSerifBoldItalic]
+  [fallbacks=zhSerifBoldItalic]
 \definefontsynonym
   [SerifBoldItalic][zhSerifBoldItalicfallback]
 \stoptypescript
 \starttypescript[sans][zhfonts]
 \definefontsynonym
-  [zhSansfallback][latinSans][fallbacks=zhSans]
+  [zhSansfallback]
+  [latinSans]
+  [fallbacks=zhSans]
 \definefontsynonym
   [Sans][zhSansfallback]   
 \definefontsynonym
-  [zhSansBoldfallback][latinSansBold][fallbacks=zhSansBold]
+  [zhSansBoldfallback]
+  [latinSansBold]
+  [fallbacks=zhSansBold]
 \definefontsynonym
   [SansBold][zhSansBoldfallback] 
 \definefontsynonym
-  [zhSansItalicfallback][latinSansItalic][fallbacks=zhSansItalic]
+  [zhSansItalicfallback]
+  [latinSansItalic]
+  [fallbacks=zhSansItalic]
 \definefontsynonym
   [SansItalic][zhSansItalicfallback]
 \definefontsynonym
-  [zhSansBoldItalicfallback][latinSansBoldItalic][fallbacks=zhSansBoldItalic]
+  [zhSansBoldItalicfallback]
+  [latinSansBoldItalic]
+  [fallbacks=zhSansBoldItalic]
 \definefontsynonym
   [SansBoldItalic][zhSansBoldItalicfallback]
 \stoptypescript
 \starttypescript[mono][zhfonts]
 \definefontsynonym
-  [zhMonofallback][latinMono][fallbacks=zhMono]
+  [zhMonofallback]
+  [latinMono]
+  [fallbacks=zhMono]
 \definefontsynonym
   [Mono][zhMonofallback]   
 \definefontsynonym
-  [zhMonoBoldfallback][latinMonoBold][fallbacks=zhMonoBold]
+  [zhMonoBoldfallback]
+  [latinMonoBold]
+  [fallbacks=zhMonoBold]
 \definefontsynonym
   [MonoBold][zhMonoBoldfallback]  
 \definefontsynonym
-  [zhMonoItalicfallback][latinMonoItalic][fallbacks=zhMonoItalic]
+  [zhMonoItalicfallback]
+  [latinMonoItalic]
+  [fallbacks=zhMonoItalic]
 \definefontsynonym
   [MonoItalic][zhMonoItalicfallback]
 \definefontsynonym
-  [zhMonoBoldItalicfallback][latinMonoBoldItalic][fallbacks=zhMonoBoldItalic]
+  [zhMonoBoldItalicfallback]
+  [latinMonoBoldItalic]
+  [fallbacks=zhMonoBoldItalic]
 \definefontsynonym
   [MonoBoldItalic][zhMonoBoldItalicfallback]
 \stoptypescript
@@ -168,5 +192,7 @@
 \definetypeface[zhfonts][rm][serif][zhfonts][default][features=zh]
 \definetypeface[zhfonts][ss][sans][zhfonts][default][features=zh]
 \definetypeface[zhfonts][tt][mono][zhfonts][default][features=default]
-\definetypeface[zhfonts][mm][math][mathtypescriptname!][default][features=default]
+\definetypeface
+  [zhfonts][mm][math]
+  [mathtypescriptname!][default][features=default]
 \stoptypescript

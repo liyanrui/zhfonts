@@ -95,7 +95,7 @@ function zhfonts.gen_typescript()
     rep[k] = {"mathtypescriptname!", math_typescript}
     rep[k + 1] = {"features!", fontfeatures}
     local real_typescript = lpeg.replacer(rep):match(typescript)
-    context(real_typescript)
+    context.tobuffer("zhfonts:typescript", real_typescript)
     template:close()
     return real_typescript
 end
@@ -148,6 +148,7 @@ function zhfonts.main(param)
     local arg_list = string_split_and_strip(param, ",")
     if arg_list[1] ~= "none" and arg_list[2] ~= "none" then
         zhfonts.gen_typescript()
+        context("\\getbuffer[zhfonts:typescript]")
         if arg_list[1] ~= "hack" and arg_list[2] ~= "hack" then
             context("\\usetypescript[zhfonts]")
             context("\\setupbodyfont[zhfonts, " .. param .. "]")

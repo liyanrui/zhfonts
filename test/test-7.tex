@@ -1,9 +1,5 @@
 \usemodule[zhfonts]
 \starttext
-\startluacode
-local t = moduledata.zhfonts.gen_typescript()
-context.tobuffer("foo", t)
-\stopluacode
-\typebuffer[foo][option=TeX]
+\showzhfonts
 \stoptext
 
