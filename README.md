@@ -159,11 +159,11 @@ Analogously, "\setupzhfonts" can be used to change the sans (\ss) fonts and the 
    bolditalic=...]
 ```
 
-For math fonts, zhfonts module use the "modern" typescript defined by ConTeXt team. If you want to use other math fonts, please refer to https://wiki.contextgarden.net/Math_fonts and use some typescript name as the argument of "\setupzhfonts". For example to use the xits font as math font, you can do
+For math fonts, zhfonts module use the "modern" typescript defined by ConTeXt team. If you want to use other math fonts, please refer to https://wiki.contextgarden.net/Math_fonts and use some typescript name as the argument of "\setupzhfonts". For example to use the "antykwa" typescript, you can do
 
 ```TeX
 \usemodule[zhfonts]
-\setupzhfonts[math][xits]
+\setupzhfonts[math][antykwa]
 \starttext
 数学公式 $\sum_{i=1}^n α_i x^i$
 \stoptext
