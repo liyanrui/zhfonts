@@ -22,17 +22,17 @@ local function init_fonts_table()
     local f = {}
     f.chinese = {
         serif = {regular = {name = "nsimsun", rscale = "1.0"},
-                 bold = {name = "nsimsun", rscale = "1.0"},
+                 bold = {name = "simhei", rscale = "1.0"},
                  italic = {name = "nsimsun", rscale = "1.0"},
-                 bolditalic = {name = "nsimsun", rscale = "1.0"}},
+                 bolditalic = {name = "simhei", rscale = "1.0"}},
         sans = {regular = {name = "simhei", rscale = "1.0"},
                 bold = {name = "simhei", rscale = "1.0"},
                 italic = {name = "simhei", rscale = "1.0"},
                 bolditalic = {name = "simhei", rscale = "1.0"}},
         mono = {regular = {name = "kaiti", rscale = "1.0"},
-                bold = {name = "kaiti", rscale = "1.0"},
+                bold = {name = "simhei", rscale = "1.0"},
                 italic = {name = "kaiti", rscale = "1.0"},
-                bolditalic = {name = "kaiti", rscale = "1.0"}}
+                bolditalic = {name = "simhei", rscale = "1.0"}}
     }
     f.latin = {
         serif = {regular = "lmroman10regular", bold = "lmroman10bold",
