@@ -1,6 +1,6 @@
 # Introduction
 
-zhfonts is a module for Chinese typesetting in [ConTeXt](https://wiki.contextgarden.net/Installation) (MkIV or LMTX). It can be used to define the typefaces for Chinese fonts and to support the tuning of punctuations. The latter is mainly implemented by using two callback which is offered by ConTeXt MkIV or LMTX:
+zhfonts is a module for Chinese typesetting in [ConTeXt](https://wiki.contextgarden.net/Installation) (MkIV or LMTX). It can be used to define the typefaces for Chinese fonts and to support the tuning of punctuations. The latter is mainly based on two callbacks offered by ConTeXt MkIV or LMTX:
 
 ```lua
 tasks.appendaction("processors","after", ...)
