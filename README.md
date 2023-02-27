@@ -173,7 +173,7 @@ For math fonts, zhfonts module use the "modern" typescript defined by ConTeXt te
 To add some feature for fonts, particularly Latin fonts, just need
 
 ```TeX
-\setupzhfnots[features][features you want]
+\setupzhfonts[features][The features you want]
 ```
 
 For example to add the features "onum", 
