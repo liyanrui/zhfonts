@@ -219,6 +219,3 @@ For debugging, criticizing or improvement this module, You can get the content o
 \stoptext
 ```
 
-![Test result 8](test/test-8.png)
-
-
