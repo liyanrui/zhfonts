@@ -1,3 +1,4 @@
+\definefontfamily
 \def\chinesechars{%
   generalpunctuation,%
   halfwidthandfullwidthforms,%
@@ -16,6 +17,7 @@
   cjkunifiedideographsextensione,%
   cjkunifiedideographsextensionf%
 }
+
 
 \definefontfeature[zh][default][features!]
 

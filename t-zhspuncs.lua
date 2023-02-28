@@ -200,5 +200,26 @@ function zhspuncs.opt ()
     tasks.appendaction("finalizers", "after", "zhspuncs.align_left_puncs")
 end
 
-return zhspuncs
+-- for '\definefontfeature[whatever][default][mode=node,protrusion=zhspunc]'
+-- reference: ConTeXt offical 'font-imp-quality.lua'
+fonts.protrusions.classes["zhspuncs"] = {
+    vector = "myvector",
+    factor = 1
+}
+fonts.protrusions.vectors["myvector"] = {  
+   [0xFF0c] = { 0, 0.60 },  -- ，
+   [0x3002] = { 0, 0.60 },  -- 。
+   [0x2018] = { 0.60, 0 },  -- ‘
+   [0x2019] = { 0, 0.60 },  -- ’
+   [0x201C] = { 0.50, 0 },  -- “
+   [0x201D] = { 0, 0.35 },  -- ”
+   [0xFF1F] = { 0, 0.60 },  -- ？
+   [0x300A] = { 0.60, 0 },  -- 《
+   [0x300B] = { 0, 0.60 },  -- 》
+   [0xFF08] = { 0.50, 0 },  -- （
+   [0xFF09] = { 0, 0.50 },  -- ）
+   [0x3001] = { 0, 0.50 },  -- 、
+   [0xFF0E] = { 0, 0.50 },  -- ．
+}
 
+return zhspuncs

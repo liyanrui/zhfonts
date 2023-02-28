@@ -45,31 +45,11 @@ local function init_fonts_table()
     return f
 end
 
-fonts.protrusions.vectors["myvector"] = {  
-   [0xFF0c] = { 0, 0.60 },  -- ，
-   [0x3002] = { 0, 0.60 },  -- 。
-   [0x2018] = { 0.60, 0 },  -- ‘
-   [0x2019] = { 0, 0.60 },  -- ’
-   [0x201C] = { 0.50, 0 },  -- “
-   [0x201D] = { 0, 0.35 },  -- ”
-   [0xFF1F] = { 0, 0.60 },  -- ？
-   [0x300A] = { 0.60, 0 },  -- 《
-   [0x300B] = { 0, 0.60 },  -- 》
-   [0xFF08] = { 0.50, 0 },  -- （
-   [0xFF09] = { 0, 0.50 },  -- ）
-   [0x3001] = { 0, 0.50 },  -- 、
-   [0xFF0E] = { 0, 0.50 },  -- ．
-}
-fonts.protrusions.classes["myvector"] = {
-    vector = "myvector",
-    factor = 1
-}
-
 local text_fonts = init_fonts_table()
 local math_typescript = "modern"
 -- It would break the features of latin fonts.
--- local fontfeatures = "mode=node,script=hang,lang=zhs,protrusion=myvector"
-local fontfeatures = "protrusion=myvector"
+-- local fontfeatures = "mode=node,script=hang,lang=zhs,protrusion=zhspuncs"
+local fontfeatures = "protrusion=zhspuncs"
 
 function zhfonts.gen_typescript()
     local path = resolvers.findfile("typescript.template")
@@ -152,8 +132,7 @@ function zhfonts.main(param)
         if arg_list[1] ~= "hack" and arg_list[2] ~= "hack" then
             context("\\usetypescript[zhfonts]")
             context("\\setupbodyfont[zhfonts, " .. param .. "]")
-            context("\\setscript[hanzi]")
-            context("\\setupalign[hanging, hz]")
         end
     end
+    context("\\setscript[hanzi]\\setupalign[hanging, hz]")
 end
