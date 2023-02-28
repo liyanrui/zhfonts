@@ -1,13 +1,15 @@
 % forbid zhfonts to generate typescript
-% and use the feature "zhspuncs" provided by zhfonts module.
+% and use the feature "zhspuncs" provided in zhfonts module.
 \usemodule[zhfonts][style=none]
 \definefontfeature[hanzi][default][protrusion=zhspuncs]
-\definefontfeature[latin][default][onum=yes,pnum=yes]
+\definefontfeature
+  [latin][default]
+  [onum=yes,pnum=yes,protrusion=pure,expansion=quality]
 \definefallbackfamily
   [myfonts][serif][nsimsun]
   [features=hanzi,force=yes,preset=range:chinese]
 \definefontfamily[myfonts][serif][texgyrepagella][features=latin]
-\setupbodyfont[myfonts,rm]
+\setupbodyfont[myfonts]
 
 \starttext
 测试结果 1：「T\smallcaps{est}」\\

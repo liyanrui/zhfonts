@@ -49,7 +49,8 @@ local text_fonts = init_fonts_table()
 local math_typescript = "modern"
 -- It would break the features of latin fonts.
 -- local fontfeatures = "mode=node,script=hang,lang=zhs,protrusion=zhspuncs"
-local fontfeatures = "protrusion=zhspuncs"
+local hanzifeatures = "mode=node,script=hang,lang=zhs,protrusion=zhspuncs"
+local latinfeatures = "default"
 
 function zhfonts.gen_typescript()
     local path = resolvers.findfile("typescript.template")
@@ -73,7 +74,8 @@ function zhfonts.gen_typescript()
     end
     -- substitute math fonts.
     rep[k] = {"mathtypescriptname!", math_typescript}
-    rep[k + 1] = {"features!", fontfeatures}
+    rep[k + 1] = {"hanzifeatures!", hanzifeatures}
+    rep[k + 2] = {"latinfeatures!", latinfeatures}
     local real_typescript = lpeg.replacer(rep):match(typescript)
     context.tobuffer("zhfonts:typescript", real_typescript)
     template:close()
@@ -99,14 +101,17 @@ end
 local function setup_math_typescript(name)
     math_typescript = string_strip(name)
 end
-local function setup_fontfeatures (s)
-    fontfeatures = fontfeatures .. "," .. s
+local function setup_hanzifeatures (s)
+    hanzifeatures = hanzifeatures .. "," .. s
+end
+local function setup_latinfeatures (s)
+    latinfeatures = latinfeatures .. "," .. s
 end
 function zhfonts.setup(metainfo, fontinfo)
     local m = string_split_and_strip(metainfo, ",")
     local f = string_split_and_strip(fontinfo, ",")
     if #m == 1 and m[1] == "features" then
-        setup_fontfeatures(fontinfo)
+        setup_hanzifeatures(fontinfo)
     end
     if #m == 1 and text_fonts.chinese[m[1]]then
         setup_chinesefonts(m[1], f)
@@ -114,12 +119,20 @@ function zhfonts.setup(metainfo, fontinfo)
     if #m == 1 and m[1] == "math" then
         setup_math_typescript(f[1]) end
     if #m == 2 then
-	if m[1] == "latin" and text_fonts.latin[m[2]] then
-            setup_latinfonts(m[2], f)
+	if m[1] == "latin" then
+            if text_fonts.latin[m[2]] then
+                setup_latinfonts(m[2], f)
+            elseif m[2] == "features" then
+                setup_latinfeatures(fontinfo)
+            end
         end
-	if m[2] == "latin" and text_fonts.latin[m[1]] then
-            setup_latinfonts(m[1], f)
-        end	
+	if m[2] == "latin" then
+            if text_fonts.latin[m[1]] then
+                setup_latinfonts(m[1], f)
+            elseif  m[1] == "features" then
+                setup_latinfeatures(fontinfo)
+            end
+        end
     end
 end
 

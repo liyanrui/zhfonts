@@ -148,7 +148,7 @@ end
 
 function zhspuncs.align_left_puncs(head)
     local it = head
-    while it do
+    --while it do -- 仅处理第一行的左标点的伸出
         if it.id == hlist then
             local e = it.head
             local neg_kern = nil
@@ -164,7 +164,8 @@ function zhspuncs.align_left_puncs(head)
             end
             if hit ~= nil then
                 -- 文本行整体向左偏移
-                neg_kern = -left_puncs[hit.char] * quad_multiple(hit.font, 1)
+                --neg_kern = -left_puncs[hit.char] * quad_multiple(hit.font, 1)
+                neg_kern = -0.5 * quad_multiple(hit.font, 1)
                 insert_before(head, hit, new_kern(neg_kern))
                 -- 统计字符个数
                 local w = 0
@@ -190,8 +191,8 @@ function zhspuncs.align_left_puncs(head)
                 end
             end
         end
-        it = it.next
-    end
+        --it = it.next
+    --end
     return head, done
 end
 
@@ -212,7 +213,7 @@ fonts.protrusions.vectors["myvector"] = {
    [0x2018] = { 0.60, 0 },  -- ‘
    [0x2019] = { 0, 0.60 },  -- ’
    [0x201C] = { 0.50, 0 },  -- “
-   [0x201D] = { 0, 0.35 },  -- ”
+   [0x201D] = { 0, 0.50 },  -- ”
    [0xFF1F] = { 0, 0.60 },  -- ？
    [0x300A] = { 0.60, 0 },  -- 《
    [0x300B] = { 0, 0.60 },  -- 》

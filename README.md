@@ -173,17 +173,18 @@ For math fonts, zhfonts module use the "modern" typescript defined by ConTeXt te
 To add some feature for fonts, particularly Latin fonts, just need
 
 ```TeX
-\setupzhfonts[features][The features you want]
+\setupzhfonts[latin,features][The features you want]
 ```
 
 For example to add the features "onum", 
 
 ```TeX
 \usemodule[zhfonts]
-\setupzhfonts[features][onum=yes]
+\setupzhfonts[latin,features][onum=yes]
 
 \starttext
 \inframed{\switchtobodyfont[16pt]字体特性：It's 2023!}
+% lmroman10regular has been loaded in zhfonts module.
 \showotfcomposition{lmroman10regular*zh at 16pt}{}{It's 2023!}
 \stoptext
 ```

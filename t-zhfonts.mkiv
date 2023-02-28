@@ -1,6 +1,6 @@
 %D \module
 %D   [     file=t-zhfonts,	
-%D      version=2010.01.06,
+%D      version=2023.02.28,
 %D        title=\CONTEXT\ User Module,
 %D     subtitle=zhfonts,
 %D       author=Li Yanrui,
@@ -25,10 +25,13 @@
 \def\showzhfonts{\typebuffer[zhfonts:typescript][option=TeX]}
 
 % %D 预先设置文档主字体类型与尺寸，防止 ConTexT 将 12pt 作为 1em 的绝对长度
-\setupbodyfont[\@@@@??style,\@@@@??size]
-\definebodyfontenvironment[18pt] % 阻止警告
-\definebodyfontenvironment[24pt] % 阻止警告
-\appendtoks \zhfonts[\@@@@??style, \@@@@??size] \to \everystarttext
+%\setupbodyfont[\@@@@??style,\@@@@??size] % 待废弃
+%\definebodyfontenvironment[18pt] % 阻止警告，待删除
+%\definebodyfontenvironment[24pt] % 阻止警告，待删除
+% 新方案
+\definefontfamily[foo][rm][latinmodernroman]
+\setupbodyfont[foo,rm,\@@@@??size]
+\prependtoks\zhfonts[\@@@@??style,\@@@@??size]\to\everystarttext
 \protect
 \stopmodule
 \endinput

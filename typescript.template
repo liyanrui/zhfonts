@@ -19,7 +19,8 @@
 }
 
 
-\definefontfeature[zh][default][features!]
+\definefontfeature[hanzi][default][hanzifeatures!]
+\definefontfeature[latin][default][latinfeatures!]
 
 % Chinese font family
 \starttypescript[serif][zhfonts]
@@ -92,22 +93,22 @@
 
 % Latin font family
 \starttypescript[serif][zhfonts]
-\definefontsynonym[latinSerif][latinserifregular!]
-\definefontsynonym[latinSerifBold][latinserifbold!]
-\definefontsynonym[latinSerifItalic][latinserifitalic!]
-\definefontsynonym[latinSerifBoldItalic][latinserifbolditalic!]
+\definefontsynonym[latinSerif][latinserifregular!][features=latin]
+\definefontsynonym[latinSerifBold][latinserifbold!][features=latin]
+\definefontsynonym[latinSerifItalic][latinserifitalic!][features=latin]
+\definefontsynonym[latinSerifBoldItalic][latinserifbolditalic!][features=latin]
 \stoptypescript
-\starttypescript[sans][zhfonts]
-\definefontsynonym[latinSans][latinsansregular!]
-\definefontsynonym[latinSansBold][latinsansbold!]
-\definefontsynonym[latinSansItalic][latinsansitalic!]
-\definefontsynonym[latinSansBoldItalic][latinsansbolditalic!]
+\starttypescript[sans][zhfonts][features=latin]
+\definefontsynonym[latinSans][latinsansregular!][features=latin]
+\definefontsynonym[latinSansBold][latinsansbold!][features=latin]
+\definefontsynonym[latinSansItalic][latinsansitalic!][features=latin]
+\definefontsynonym[latinSansBoldItalic][latinsansbolditalic!][features=latin]
 \stoptypescript
 \starttypescript[mono][zhfonts]
-\definefontsynonym[latinMono][latinmonoregular!]
-\definefontsynonym[latinMonoBold][latinmonobold!]
-\definefontsynonym[latinMonoItalic][latinmonoitalic!]
-\definefontsynonym[latinMonoBoldItalic][latinmonobolditalic!]
+\definefontsynonym[latinMono][latinmonoregular!][features=latin]
+\definefontsynonym[latinMonoBold][latinmonobold!][features=latin]
+\definefontsynonym[latinMonoItalic][latinmonoitalic!][features=latin]
+\definefontsynonym[latinMonoBoldItalic][latinmonobolditalic!][features=latin]
 \stoptypescript
 
 % Chinese fonts + Latin fonts
@@ -191,10 +192,8 @@
 \stoptypescript
 
 \starttypescript[zhfonts]
-\definetypeface[zhfonts][rm][serif][zhfonts][default][features=zh]
-\definetypeface[zhfonts][ss][sans][zhfonts][default][features=zh]
-\definetypeface[zhfonts][tt][mono][zhfonts][default][features=default]
-\definetypeface
-  [zhfonts][mm][math]
-  [mathtypescriptname!][default][features=default]
+\definetypeface[zhfonts][rm][serif][zhfonts][default][features=hanzi]
+\definetypeface[zhfonts][ss][sans][zhfonts][default][features=hanzi]
+\definetypeface[zhfonts][tt][mono][zhfonts][default][features=none]
+\definetypeface[zhfonts][mm][math][mathtypescriptname!][default]
 \stoptypescript
