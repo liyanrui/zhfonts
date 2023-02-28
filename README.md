@@ -201,8 +201,8 @@ Although Latin characters are included in a Chinese font, they are ugly in gener
    bold=notoserifcjkscbold@0.5]
 
 \starttext
-这是汉字，This English characters.\par
-\bf 这是汉字，This English characters.
+这是汉字，These are English characters.\par
+\bf 这是汉字，These are English characters.
 \stoptext
 ```
 
