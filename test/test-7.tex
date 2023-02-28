@@ -1,5 +1,10 @@
-\usemodule[zhfonts]
+\usemodule[zhfonts][size=16pt]
+\setupzhfonts
+  [serif]
+  [regular=@1.5, % adjust the scale of default font.
+   bold=notoserifcjkscbold@0.5]
+  
 \starttext
-\showzhfonts
+这是汉字，This English characters.\par
+\bf 这是汉字，This English characters.
 \stoptext
-

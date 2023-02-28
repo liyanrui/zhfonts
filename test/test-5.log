@@ -1,0 +1,145 @@
+system          > 
+system          > ConTeXt  ver: 2023.02.23 21:26 LMTX  fmt: 2023.2.24  int: english/english
+system          > 
+system          > 'cont-new.mkxl' loaded
+open source     > level 1, order 1, name '/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/base/mkxl/cont-new.mkxl'
+system          > beware: some patches loaded from cont-new.mkiv
+close source    > level 1, order 1, name '/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/base/mkxl/cont-new.mkxl'
+system          > files > jobname './test-5', input './test-5.tex', result './test-5'
+fonts           > latin modern fonts are not preloaded
+languages       > language 'en' is active
+open source     > level 1, order 2, name './test-5.tex'
+modules         > 'zhfonts' is loaded
+open source     > level 2, order 3, name '../t-zhfonts.mkiv'
+loading         > ConTeXt User Module / zhfonts
+resolvers       > lua > loading file '/home/garfileo/opt/context-lmtx/tex/texmf-local/tex/context/third/zhfonts/t-zhfonts.lua' succeeded
+fonts           > preloading latin modern fonts (third stage)
+fonts           > 'fallback modern rm 11pt' is loaded
+close source    > level 2, order 3, name '../t-zhfonts.mkiv'
+open source     > level 2, order 4, name '/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/base/mkxl/type-imp-euler.mkxl'
+open source     > level 3, order 5, name '/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/fonts/mkiv/type-imp-texgyre.mkiv'
+close source    > level 3, order 5, name '/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/fonts/mkiv/type-imp-texgyre.mkiv'
+open source     > level 3, order 6, name '/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/fonts/mkiv/type-imp-dejavu.mkiv'
+close source    > level 3, order 6, name '/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/fonts/mkiv/type-imp-dejavu.mkiv'
+close source    > level 2, order 6, name '/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/base/mkxl/type-imp-euler.mkxl'
+fonts           > defining > font 'simsun', feature 'vert', script 'hani', no language 'dflt'
+mathematics     > tweak > 'Neo-Euler', size 6, math size 3, version 'Version 0.21' found, version 'Version 000.002 ' expected
+backend         > xmp > using file '/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/base/mkiv/lpdf-pdx.xml'
+pages           > flushing realpage 1, userpage 1, subpage 1
+close source    > level 1, order 6, name './test-5.tex'
+system          > start used files
+system          > text: test-5
+system          > stop used files
+system          > start used files
+system          >    1: filename=publ-imp-default.lua filetype=scripts foundname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/base/mkiv/publ-imp-default.lua fullname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/base/mkiv/publ-imp-default.lua usedmethod=database
+system          >    2: filename=cont-new.mkxl filetype=tex foundname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/base/mkxl/cont-new.mkxl fullname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/base/mkxl/cont-new.mkxl usedmethod=database
+system          >    3: filename=lang-exc.lua filetype=scripts foundname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/base/mkiv/lang-exc.lua fullname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/base/mkiv/lang-exc.lua usedmethod=database
+system          >    4: filename=lang-us.lua filetype=scripts foundname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/patterns/mkiv/lang-us.lua fullname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/patterns/mkiv/lang-us.lua usedmethod=database
+system          >    5: filename=/home/garfileo/opt/context-lmtx/tex/texmf-local/tex/context/third/zhfonts/test/test-5.tex format=tex foundname=/home/garfileo/opt/context-lmtx/tex/texmf-local/tex/context/third/zhfonts/test/test-5.tex fullname=/home/garfileo/opt/context-lmtx/tex/texmf-local/tex/context/third/zhfonts/test/test-5.tex usedmethod=direct
+system          >    6: filename=../t-zhfonts.mkiv foundname=../t-zhfonts.mkiv fullname=/home/garfileo/opt/context-lmtx/tex/texmf-local/tex/context/third/zhfonts/t-zhfonts.mkiv usedmethod=direct
+system          >    7: filename=t-zhfonts.lua filetype=tex format=tex foundname=/home/garfileo/opt/context-lmtx/tex/texmf-local/tex/context/third/zhfonts/t-zhfonts.lua fullname=/home/garfileo/opt/context-lmtx/tex/texmf-local/tex/context/third/zhfonts/t-zhfonts.lua usedmethod=database
+system          >    8: filename=t-zhspuncs.lua filetype=tex format=tex foundname=/home/garfileo/opt/context-lmtx/tex/texmf-local/tex/context/third/zhfonts/t-zhspuncs.lua fullname=/home/garfileo/opt/context-lmtx/tex/texmf-local/tex/context/third/zhfonts/t-zhspuncs.lua usedmethod=database
+system          >    9: filename=lm.lfg filetype=tex foundname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/fonts/mkiv/lm.lfg fullname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/fonts/mkiv/lm.lfg usedmethod=database
+system          >   10: filename=lmroman10-regular filetype=otf format=otf foundname=/home/garfileo/opt/context-lmtx/tex/texmf/fonts/data/gust/lm/lmroman10-regular.otf fullname=/home/garfileo/opt/context-lmtx/tex/texmf/fonts/data/gust/lm/lmroman10-regular.otf usedmethod=database
+system          >   11: filename=latinmodern-math.otf filetype=otf format=otf foundname=/home/garfileo/opt/context-lmtx/tex/texmf/fonts/data/gust/lm/latinmodern-math.otf fullname=/home/garfileo/opt/context-lmtx/tex/texmf/fonts/data/gust/lm/latinmodern-math.otf usedmethod=database
+system          >   12: filename=modern-math.lfg filetype=tex foundname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/fonts/mkiv/modern-math.lfg fullname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/fonts/mkiv/modern-math.lfg usedmethod=database
+system          >   13: filename=common-math.lfg filetype=tex foundname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/fonts/mkiv/common-math.lfg fullname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/fonts/mkiv/common-math.lfg usedmethod=database
+system          >   14: filename=typescript.template filetype=tex foundname=/home/garfileo/opt/context-lmtx/tex/texmf-local/tex/context/third/zhfonts/typescript.template fullname=/home/garfileo/opt/context-lmtx/tex/texmf-local/tex/context/third/zhfonts/typescript.template usedmethod=database
+system          >   15: filename=type-imp-euler.mkxl filetype=tex foundname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/base/mkxl/type-imp-euler.mkxl fullname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/base/mkxl/type-imp-euler.mkxl usedmethod=database
+system          >   16: filename=type-imp-texgyre.mkiv filetype=tex foundname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/fonts/mkiv/type-imp-texgyre.mkiv fullname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/fonts/mkiv/type-imp-texgyre.mkiv usedmethod=database
+system          >   17: filename=type-imp-dejavu.mkiv filetype=tex foundname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/fonts/mkiv/type-imp-dejavu.mkiv fullname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/fonts/mkiv/type-imp-dejavu.mkiv usedmethod=database
+system          >   18: filename=lmroman10-regular.otf filetype=otf format=otf foundname=/home/garfileo/opt/context-lmtx/tex/texmf/fonts/data/gust/lm/lmroman10-regular.otf fullname=/home/garfileo/opt/context-lmtx/tex/texmf/fonts/data/gust/lm/lmroman10-regular.otf usedmethod=database
+system          >   19: filename=simsun.ttc filetype=ttc format=ttc foundname=/home/garfileo/opt/context-lmtx/tex/texmf-local/fonts/truetype/msfonts/simsun.ttc fullname=/home/garfileo/opt/context-lmtx/tex/texmf-local/fonts/truetype/msfonts/simsun.ttc usedmethod=otherwise
+system          >   20: filename=euler-math.otf filetype=otf format=otf foundname=/home/garfileo/opt/context-lmtx/tex/texmf/fonts/data/public/euler/euler-math.otf fullname=/home/garfileo/opt/context-lmtx/tex/texmf/fonts/data/public/euler/euler-math.otf usedmethod=database
+system          >   21: filename=euler-math.lfg filetype=tex foundname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/fonts/mkiv/euler-math.lfg fullname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/fonts/mkiv/euler-math.lfg usedmethod=database
+system          >   22: filename=texgyrepagella-math.otf filetype=otf format=otf foundname=/home/garfileo/opt/context-lmtx/tex/texmf/fonts/data/gust/tex-gyre/pagella/texgyrepagella-math.otf fullname=/home/garfileo/opt/context-lmtx/tex/texmf/fonts/data/gust/tex-gyre/pagella/texgyrepagella-math.otf usedmethod=database
+system          >   23: filename=lpdf-pdx.xml filetype=tex foundname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/base/mkiv/lpdf-pdx.xml fullname=/home/garfileo/opt/context-lmtx/tex/texmf-context/tex/context/base/mkiv/lpdf-pdx.xml usedmethod=database
+system          > stop used files
+system          > start commandline options
+system          > currentrun="1"
+system          > fulljobname="./test-5.tex"
+system          > input="./test-5.tex"
+system          > kindofrun="1"
+system          > maxnofruns="9"
+system          > texmfbinpath="/home/garfileo/opt/context-lmtx/tex/texmf-linux-64/bin"
+system          > stop commandline options
+system          > start commandline files
+system          >    1: ./test-5.tex
+system          > stop commandline files
+modules         > start used modules
+modules         > loaded : *-zhfonts
+modules         > stop used modules
+system          > 
+system          > status after finishing run
+system          > 
+system          >   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+system          >           string       pool       hash     lookup       node      token     buffer      input       file       nest  parameter       save       font   language       mark     insert
+system          >   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+system          >   max    2097152  100000000    2097152    2097152  100000000   10000000  100000000     100000       2000      10000     100000     500000     100000      10000      10000        500
+system          >   min     150000   10000000     150000     150000    2000000    1000000    1000000      10000        500       1000      20000     100000        250        250         50         10
+system          >   set     500000   10000000     250000     250000   50000000   10000000   10000000     100000       2000      10000     100000     500000     100000        250        250        250
+system          >   stp     100000    1000000     100000     100000     500000     250000    1000000      10000        250       1000      10000      10000        250        250         50         25
+system          > 
+system          >   mem     150000     998929     150000               2000000    1000000    1000000      10000        500       1000      20000      10000   13517576         96       1200        320
+system          >   all    2400000     998929    2400000              18000000    8000000    1000000     320000      16000      72000      80000     160000   13517576         96      28800      10240
+system          > 
+system          >   ini    2144902     903209          0      47734          0     523302                                                                                       0                      
+system          >   ptr      52065                 10593      52049                623646          0          0          0          0          0          0         18          0          0          7
+system          >   top      52066                740853     131074       5687     640421        275         47          9         12         48        358        250        250         50         10
+system          >   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+system          > 
+system          >   current input type    : initial
+system          > 
+system          >   approximate memory    : 51123673 (48 MB)
+system          > 
+system          >   expansion depth       : min: 10000, max: 1000000, set: 10000, top: 5
+system          > 
+system          >   luabytecode registers : 1007
+system          >   luabytecode bytes     : 16128 (0 MB)
+system          >   luastate bytes now    : 114710543 (109 MB)
+system          >   luastate bytes max    : 114710543 (109 MB)
+system          > 
+system          >   file callbacks        : 650
+system          >   saved callbacks       : 232
+system          >   direct callbacks      : 5
+system          >   function callbacks    : 2809
+system          >   value callbacks       : 2
+system          >   message callbacks     : 0
+system          >   bytecode callbacks    : 612
+system          > 
+system          >   mp instances          : 0
+system          >   mp estimated memory   : 0 (0 MB)
+system          >   mp file callbacks     : 0
+system          >   mp text callbacks     : 0
+system          >   mp script callbacks   : 0
+system          >   mp log callbacks      : 0
+system          > 
+system          >   total callbacks       : 4310
+system          >   mp total callbacks    : 0
+system          >   backend callbacks     : 0
+system          > 
+mkiv lua stats  > used config file: selfautoparent:/texmf/web2c/texmfcnf.lua
+mkiv lua stats  > used cache path: /home/garfileo/opt/context-lmtx/tex/texmf-cache/luametatex-cache/context/5fe67e0bfe781ce0dde776fb1556f32e
+mkiv lua stats  > resource resolver: loadtime 0.005 seconds, 0 scans with scantime 0.000 seconds, 0 shared scans, 23 found files, scanned paths: <none>
+mkiv lua stats  > stored bytecode data: 507 modules (0.227 sec), 105 tables (0.012 sec), 612 chunks (0.239 sec)
+mkiv lua stats  > traced context: maxstack: 1662, freed: 0, unreachable: 1662
+mkiv lua stats  > cleaned up reserved nodes: 73 nodes, 7 lists of 434
+mkiv lua stats  > node memory usage: 9 attribute, 1 glue, 120 gluespec, 3 kern, 645 mathspec, 2 penalty, 2 temp
+mkiv lua stats  > node list callback tasks: 13 unique task lists, 10 instances (re)created, 58 calls
+mkiv lua stats  > used backend: pdf
+mkiv lua stats  > jobdata time: 0.001 seconds saving, 0.001 seconds loading
+mkiv lua stats  > callbacks: file: 650, saved: 232, direct: 5, function: 2809, value: 2, message: 0, bytecode: 612, late 0, total: 4310 (4310 per page)
+mkiv lua stats  > randomizer: resumed with value 0.54334819974703
+mkiv lua stats  > loaded tex modules: 1 requested, all found (*-zhfonts)
+mkiv lua stats  > loaded patterns: en::1, load time: 0.000
+mkiv lua stats  > loaded fonts: 5 files: simsun.ttc, latinmodern-math.otf, lmroman10-regular.otf, texgyrepagella-math.otf, euler-math.otf
+mkiv lua stats  > font engine: otf 3.133, afm 1.513, tfm 1.000, 15 instances, 6 shared in backend, 4 common vectors, 2 common hashes, load time 0.559 seconds 
+mkiv lua stats  > math tweaking time: 0.150 seconds, 18 math goodie tables
+mkiv lua stats  > font embedding time: 0.024 seconds, 4 fonts
+mkiv lua stats  > result saved in file: test-5.pdf, compresslevel 1, objectcompresslevel 3
+mkiv lua stats  > positions: 4 collected, 0 deltas, 0 shared partials, 0 partial entries
+mkiv lua stats  > used platform: linux-64, type: unix, binary subtree: texmf-linux-64
+mkiv lua stats  > used engine: luametatex version: 2.1006, functionality level: 20230224, format id: 686, compiler: gcc
+mkiv lua stats  > tex properties: 740853 hash slots used of 2097152, 52049 control sequences, approximate memory usage: 48 MB
+mkiv lua stats  > lua properties: engine: lua 5.4, used memory: 113 MB, ctx: 109 MB, max: 109 MB, symbol mask: utf (τεχ)
+mkiv lua stats  > runtime: 0.926 seconds, 1 processed pages, 1 shipped pages, 1.080 pages/second
