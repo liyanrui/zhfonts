@@ -208,7 +208,7 @@ Although Latin characters are included in a Chinese font, they are ugly in gener
 
 ![Test result 7](test/test-7.png)
 
-# Only using the features of Chinese punctuation: protrusion and sapce-compressing
+# Only using the features of Chinese punctuation: protrusion and space-compressing
 
 If you want to use `\definefallbackfamily` and `\definefontfamily` to define the font familys which mixed Chinese fonts and Latin fonts, you can do this like
 
