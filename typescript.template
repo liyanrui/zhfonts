@@ -18,7 +18,6 @@
   cjkunifiedideographsextensionf%
 }
 
-
 \definefontfeature[hanzi][default][hanzifeatures!]
 \definefontfeature[latin][default][latinfeatures!]
 
