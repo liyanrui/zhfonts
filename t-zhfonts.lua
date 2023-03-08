@@ -53,7 +53,7 @@ local hanzifeatures = "mode=node,script=hang,lang=zhs,protrusion=zhspuncs"
 local latinfeatures = "default"
 
 function zhfonts.gen_typescript()
-    local path = resolvers.findfile("typescript.template")
+    local path = resolvers.findfile("zhfonts/typescript.template")
     local template = assert(io.open(path, "r"))
     local typescript = template:read("*all")
     local rep, k = {}, 1
