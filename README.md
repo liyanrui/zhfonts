@@ -45,7 +45,7 @@ $ mtxrun --script fonts --reload --force
 This command can be used to check whether the fonts exist:
 
 ```console
-$ mtxrun --script fonts --list --all --pattern=sim*
+$ mtxrun --script fonts --list --all --pattern="sim*"
 ```
 
 The result should be
