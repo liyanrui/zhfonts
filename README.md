@@ -11,10 +11,10 @@ Therefore I could not guarantee this module works always unless that callback is
 
 # Installation
 
-Put the module (the directory named zhfonts) into your ConTeXt directory, for example mine is "/home/garfileo/opt/context" in a Linux system (For windows, it can be "c:\context"). I put the module into the directory
+Put the module (the directory named zhfonts) into your `$TEXROOT/texmf-local/tex/context/third` directory, for example my TEXROOT is "$HOME/opt/context/tex" in a Linux system (For windows, it can be "c:\context\tex"). I put the module into the directory
 
 ```plain
-/home/garfileo/opt/context/tex/texmf-local/tex/context/third
+$HOME/opt/context/tex/texmf-local/tex/context/third
 ```
 
 Then excute the following command to enable the context program to find the module files,
