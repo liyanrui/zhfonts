@@ -101,12 +101,14 @@
 \definefontsynonym[latinSerifItalic][latinserifitalic!][features=latin]
 \definefontsynonym[latinSerifBoldItalic][latinserifbolditalic!][features=latin]
 \stoptypescript
-\starttypescript[sans][zhfonts][features=latin]
+
+\starttypescript[sans][zhfonts]
 \definefontsynonym[latinSans][latinsansregular!][features=latin]
 \definefontsynonym[latinSansBold][latinsansbold!][features=latin]
 \definefontsynonym[latinSansItalic][latinsansitalic!][features=latin]
 \definefontsynonym[latinSansBoldItalic][latinsansbolditalic!][features=latin]
 \stoptypescript
+
 \starttypescript[mono][zhfonts]
 \definefontsynonym[latinMono][latinmonoregular!][features=latin]
 \definefontsynonym[latinMonoBold][latinmonobold!][features=latin]
@@ -141,6 +143,7 @@
 \definefontsynonym
   [SerifBoldItalic][zhSerifBoldItalicfallback]
 \stoptypescript
+
 \starttypescript[sans][zhfonts]
 \definefontsynonym
   [zhSansfallback]
@@ -167,6 +170,7 @@
 \definefontsynonym
   [SansBoldItalic][zhSansBoldItalicfallback]
 \stoptypescript
+
 \starttypescript[mono][zhfonts]
 \definefontsynonym
   [zhMonofallback]
