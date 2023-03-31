@@ -57,11 +57,11 @@ function zhfonts.gen_typescript()
     local template = assert(io.open(path, "r"))
     local typescript = template:read("*all")
     local rep, k = {}, 1
-    local style = {"serif", "sans", "mono"}
-    local type = {"regular", "bold", "italic", "bolditalic"}
+    local family = {"serif", "sans", "mono"}
+    local style = {"regular", "bold", "italic", "bolditalic"}
     -- substitute chinese and latin fonts.
-    for _, a in pairs(style) do
-        for _, b in pairs(type) do
+    for _, a in pairs(family) do
+        for _, b in pairs(style) do
             local fontname = a .. b
             rep[k] = {"zh" .. fontname .. "!",
                       "name:" .. text_fonts.chinese[a][b].name}

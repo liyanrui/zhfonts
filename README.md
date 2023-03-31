@@ -104,7 +104,7 @@ The command `\setupzhfonts` which can be used to set up the bodyfonts (text font
 For example, set up sans font specified size as the text bodyfont:
 
 ```TeX
-\usemodule[zhfonts][style=ss,size=14pt]
+\usemodule[zhfonts][family=ss,size=14pt]
 \starttext
 我能吞下玻璃而不伤身体。I can eat glass, it does not hurt me.
 \stoptext
@@ -230,7 +230,7 @@ You can forbid zhfonts to generate the typescript providing the equivalent defin
 ```TeX
 % forbid zhfonts to generate typescript
 % and use the feature "zhspuncs" provided by zhfonts module.
-\usemodule[zhfonts][style=none]
+\usemodule[zhfonts][family=none]
 \definefontfeature[hanzi][default][protrusion=zhspuncs]
 \definefontfeature[latin][default][onum=yes,pnum=yes]
 \definefallbackfamily
