@@ -12,9 +12,9 @@
 \writestatus{loading}{ConTeXt User Module / zhfonts}
 \startmodule[zhfonts]
 \unprotect
-\setupmodule[style=rm,size=11pt] % 相当于 Mircrosoft Word 小四号字
+\setupmodule[family=rm,size=11pt]
 \ctxloadluafile{t-zhfonts}
-\edef\@@@@??style{\currentmoduleparameter{style}}
+\edef\@@@@??family{\currentmoduleparameter{family}}
 \edef\@@@@??size{\currentmoduleparameter{size}}
 
 \def\setupzhfonts{\dodoubleempty\dosetupzhfonts}
@@ -25,7 +25,7 @@
 \def\showzhfonts{\typebuffer[zhfonts:typescript][option=TeX]}
 
 % 使得 zhfonts 默认字体设置生效
-\prependtoks\zhfonts[\@@@@??style,\@@@@??size]\to\everystarttext
+\prependtoks\zhfonts[\@@@@??family,\@@@@??size]\to\everystarttext
 \protect
 \stopmodule
 \endinput

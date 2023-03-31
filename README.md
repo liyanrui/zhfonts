@@ -185,7 +185,7 @@ For example to add the features "onum",
 \starttext
 \inframed{\switchtobodyfont[16pt]字体特性：It's 2023!}
 % lmroman10regular has been loaded in zhfonts module.
-\showotfcomposition{lmroman10regular*zh at 16pt}{}{It's 2023!}
+\showotfcomposition{lmroman10regular*latin at 16pt}{}{It's 2023!}
 \stoptext
 ```
 ![Test result 6](test/test-6.png)
