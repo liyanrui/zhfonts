@@ -1,4 +1,3 @@
-\definefontfamily
 \def\chinesechars{%
   generalpunctuation,%
   halfwidthandfullwidthforms,%
@@ -21,6 +20,8 @@
   cjkunifiedideographsextensione,%
   cjkunifiedideographsextensionf%
 }
+% 简单粗暴的字体替换范围
+%\def\chinesechars{0x00400-0x1ffff}
 
 \definefontfeature[hanzi][default][hanzifeatures!]
 \definefontfeature[latin][default][latinfeatures!]
@@ -110,10 +111,10 @@
 \stoptypescript
 
 \starttypescript[mono][zhfonts]
-\definefontsynonym[latinMono][latinmonoregular!][features=latin]
-\definefontsynonym[latinMonoBold][latinmonobold!][features=latin]
-\definefontsynonym[latinMonoItalic][latinmonoitalic!][features=latin]
-\definefontsynonym[latinMonoBoldItalic][latinmonobolditalic!][features=latin]
+\definefontsynonym[latinMono][latinmonoregular!][features=none]
+\definefontsynonym[latinMonoBold][latinmonobold!][features=none]
+\definefontsynonym[latinMonoItalic][latinmonoitalic!][features=none]
+\definefontsynonym[latinMonoBoldItalic][latinmonobolditalic!][features=none]
 \stoptypescript
 
 % Chinese fonts + Latin fonts
@@ -121,7 +122,7 @@
 \definefontsynonym
   [zhSeriffallback]
   [latinSerif]
-  [fallbacks=zhSerif]
+  [fallbacks=zhSerif,features=latin]
 \definefontsynonym
   [Serif][zhSeriffallback]
 \definefontsynonym
