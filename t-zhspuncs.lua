@@ -148,7 +148,7 @@ end
 
 function zhspuncs.align_left_puncs(head)
     local it = head
-    --while it do -- 仅处理第一行的左标点的伸出
+    while it do -- 仅处理第一行的左标点的伸出
         if it.id == hlist then
             local e = it.head
             local neg_kern = nil
@@ -191,8 +191,8 @@ function zhspuncs.align_left_puncs(head)
                 end
             end
         end
-        --it = it.next
-    --end
+        it = it.next
+    end
     return head, done
 end
 

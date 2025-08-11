@@ -48,8 +48,8 @@ end
 local text_fonts = init_fonts_table()
 local math_typescript = "modern"
 -- It would break the features of latin fonts.
--- local fontfeatures = "mode=node,script=hang,lang=zhs,protrusion=zhspuncs"
-local hanzifeatures = "mode=node,script=hang,lang=zhs,protrusion=zhspuncs"
+-- local fontfeatures = "mode=node,script=hani,protrusion=zhspuncs"
+local hanzifeatures = "mode=node,autoscript=position,autolanguage=position,protrusion=zhspuncs"
 local latinfeatures = "default"
 
 function zhfonts.gen_typescript()
