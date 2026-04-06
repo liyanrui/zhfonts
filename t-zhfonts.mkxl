@@ -1,0 +1,34 @@
+%D \module
+%D   [     file=t-zhfonts,	
+%D      version=2023.02.28,
+%D        title=\CONTEXT\ User Module,
+%D     subtitle=zhfonts,
+%D       author=Li Yanrui,
+%D         date=\currentdate,
+%D    copyright=Li Yanrui,
+%D        email=liyanrui.m2@gmail.com,
+%D      license=Public Domain]
+
+\writestatus{loading}{ConTeXt User Module / zhfonts}
+\startmodule[zhfonts]
+\unprotect
+\setupmodule[family=rm,size=11pt]
+\ctxloadluafile{t-zhfonts}
+\edef\@@@@??family{\currentmoduleparameter{family}}
+\edef\@@@@??size{\currentmoduleparameter{size}}
+\def\setupzhfonts[#1][#2]{%
+        \ctxlua{moduledata.zhfonts.setup ('#1', '#2')}
+}
+\def\zhfonts[#1]{\ctxlua{moduledata.zhfonts.main ('#1')}}
+\def\showzhfonts{\typebuffer[zhfonts:typescript][option=TeX]}
+
+% 使得 zhfonts 默认字体设置生效
+\prependtoks\zhfonts[\@@@@??family,\@@@@??size]\to\everystarttext
+\protect
+
+% 顺便启用中文界面
+\mainlanguage[cn]
+%\setuplabeltext[cn][chapter={{第 },{ 章}}]
+\stopmodule
+\endinput
+

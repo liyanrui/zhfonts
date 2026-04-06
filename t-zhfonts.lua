@@ -4,16 +4,11 @@ moduledata.zhfonts = moduledata.zhfonts or {}
 local zhfonts = moduledata.zhfonts
 local zhspuncs = require "t-zhspuncs"
 
-local string_strip = string.strip
-local string_split = string.split
-local string_match = string.match
-local string_gsub  = string.gsub
-
 local function string_split_and_strip(str, sep)
-    local strlist = string_split(str, sep)
+    local strlist = string.split(str, sep)
     local result  = {}
     for i, v in ipairs(strlist) do
-	result[i] = string_strip(v)
+	result[i] = string.strip(v)
     end
     return result
 end
@@ -99,7 +94,7 @@ local function setup_latinfonts(meta, fontlist)
     end   
 end
 local function setup_math_typescript(name)
-    math_typescript = string_strip(name)
+    math_typescript = string.strip(name)
 end
 local function setup_hanzifeatures (s)
     hanzifeatures = hanzifeatures .. "," .. s
