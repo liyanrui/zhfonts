@@ -109,10 +109,10 @@
 \stoptypescript
 
 \starttypescript[mono][zhfonts]
-\definefontsynonym[latinMono][latinmonoregular!][features=latin]
-\definefontsynonym[latinMonoBold][latinmonobold!][features=latin]
-\definefontsynonym[latinMonoItalic][latinmonoitalic!][features=latin]
-\definefontsynonym[latinMonoBoldItalic][latinmonobolditalic!][features=latin]
+\definefontsynonym[latinMono][latinmonoregular!][features=none]
+\definefontsynonym[latinMonoBold][latinmonobold!][features=none]
+\definefontsynonym[latinMonoItalic][latinmonoitalic!][features=none]
+\definefontsynonym[latinMonoBoldItalic][latinmonobolditalic!][features=none]
 \stoptypescript
 
 % Chinese fonts + Latin fonts
