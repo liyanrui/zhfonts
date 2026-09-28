@@ -13,6 +13,63 @@ local function string_split_and_strip(str, sep)
     return result
 end
 
+-- --------------------中文字体边界盒修复：by Huang jinze ----------------
+-- In a font descriptor the boundingbox is expected to be given in a 1000 unit
+-- em. That is what a PDF viewer assumes when it needs the vertical extent of a
+-- character, for instance for the selection highlight, and it is also what
+-- ConTeXt itself assumes when it falls back on this box for the capheight and
+-- the xheight. The Chinese fonts we use here (nsimsun, simhei, kaiti, ...) are
+-- 256 unit em fonts though, and although ConTeXt scales the ascent, the
+-- descent, the capheight and the xheight of the descriptor, it copies the
+-- boundingbox verbatim. As a result a viewer computes a box of about a quarter
+-- of a line height and selects Chinese characters as a thin strip near the
+-- baseline. Therefore we rescale the boundingbox to a 1000 unit em here, which
+-- is a no brainer because it only concerns fonts that are not 1000 unit em
+-- fonts to start with. The boundingbox can be touched this way because it is
+-- only used for the descriptor (the widths, the ascent and the descent are
+-- dealt with elsewhere). Watch out: when \CONTEXT\ itself starts scaling this
+-- box in the backend, this enhancer has to be removed, otherwise the box gets
+-- scaled twice.
+local trace_scaling = false
+trackers.register("zhfonts.scaling", function(v) trace_scaling = v end)
+
+local function report_scaling(...)
+    if trace_scaling then
+        logs.report("zhfonts", ...)
+    end
+end
+
+local function fix_boundingbox(data, filename)
+    local metadata = data and data.metadata
+    if not metadata or metadata.zhfonts_boundingbox_fixed then
+        return
+    end
+    local units = metadata.units
+    local bbox  = metadata.boundingbox
+    if not units or units == 1000 or not bbox then
+        return
+    end
+    local factor = 1000 / units
+    -- keep these in font units: ConTeXt prefers them over the (now rescaled)
+    -- boundingbox and still scales them itself
+    metadata.capheight = metadata.capheight or bbox[4]
+    metadata.xheight   = metadata.xheight  or bbox[4]
+    metadata.boundingbox = { bbox[1] * factor, bbox[2] * factor,
+                             bbox[3] * factor, bbox[4] * factor }
+    metadata.zhfonts_boundingbox_fixed = true
+    report_scaling("boundingbox of %s rescaled from %i to 1000 units per em",
+                   tostring(filename),units)
+end
+
+zhfonts.fix_boundingbox = fix_boundingbox
+
+local otfenhancers = fonts and fonts.handlers and fonts.handlers.otf
+                     and fonts.handlers.otf.enhancers
+if otfenhancers then
+    otfenhancers.register("zhfonts boundingbox", fix_boundingbox)
+end
+-- ---------------------------中文字体边界盒修复结束----------------------------
+
 local function init_fonts_table()
     local f = {}
     f.chinese = {

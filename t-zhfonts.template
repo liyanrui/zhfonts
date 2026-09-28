@@ -23,6 +23,7 @@
 
 \definefontfeature[hanzi][default][hanzifeatures!]
 \definefontfeature[latin][default][latinfeatures!]
+\definefontfeature[mono][mode=base]
 
 % Chinese font family
 \starttypescript[serif][zhfonts]
@@ -108,11 +109,12 @@
 \definefontsynonym[latinSansBoldItalic][latinsansbolditalic!][features=latin]
 \stoptypescript
 
+% 倘若不将特性设为 none，中英文混合等宽字体会出现西文直单引号会被替换为弯的单引号
 \starttypescript[mono][zhfonts]
-\definefontsynonym[latinMono][latinmonoregular!][features=latin]
-\definefontsynonym[latinMonoBold][latinmonobold!][features=latin]
-\definefontsynonym[latinMonoItalic][latinmonoitalic!][features=latin]
-\definefontsynonym[latinMonoBoldItalic][latinmonobolditalic!][features=latin]
+\definefontsynonym[latinMono][latinmonoregular!][features=none]
+\definefontsynonym[latinMonoBold][latinmonobold!][features=none]
+\definefontsynonym[latinMonoItalic][latinmonoitalic!][features=none]
+\definefontsynonym[latinMonoBoldItalic][latinmonobolditalic!][features=none]
 \stoptypescript
 
 % Chinese fonts + Latin fonts
